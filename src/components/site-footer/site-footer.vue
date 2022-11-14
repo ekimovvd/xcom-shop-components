@@ -384,7 +384,7 @@ export default {
         font-weight: 400
         font-size: 14px
         line-height: 20px
-        color: $gray-350
+        color: $grays-gray-350
 
         &.site-footer__label--address
             margin-top: 4px
@@ -434,7 +434,7 @@ export default {
         border-radius: 100%
         width: 32px
         height: 32px
-        background: $gray-100
+        background: $grays-gray-100
         display: flex
         align-items: center
         justify-content: center
@@ -450,14 +450,14 @@ export default {
         font-weight: 400
         font-size: 14px
         line-height: 20px
-        color: $gray-350
+        color: $grays-gray-350
 
     // site-footer-other
     .site-footer__other
         padding-top: 24px
         display: flex
         align-items: center
-        border-top: 1px solid $gray-150
+        border-top: 1px solid $grays-gray-150
 
     .site-footer__mode
         display: none
@@ -467,7 +467,7 @@ export default {
         font-size: 14px
         line-height: 20px
         margin-bottom: 8px
-        color: $gray-400
+        color: $grays-gray-400
 
     .site-footer__mode-link
         font-weight: 700
@@ -487,7 +487,7 @@ export default {
         align-items: center
         justify-content: center
         border-radius: 8px
-        background: $gray-100
+        background: $grays-gray-100
 
         &.site-footer__social--telegram,
         &.site-footer__social--viber,
@@ -498,7 +498,7 @@ export default {
         display: inline-block
         border-radius: 8px
         padding: 10px 14px
-        background: $gray-100
+        background: $grays-gray-100
         margin-left: 146px
 
     .site-footer__apps
@@ -514,7 +514,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
 
 @media screen and (max-width: 1440px)
     .site-footer
@@ -565,7 +565,7 @@ export default {
         .site-footer__logo
             margin-bottom: 20px
             padding-top: 20px
-            border-top: 1px solid $gray-100
+            border-top: 1px solid $grays-gray-100
 
         // site-footer-content
         .site-footer__content
@@ -580,7 +580,7 @@ export default {
             cursor: pointer
             width: 100%
             padding: 14px 0
-            border: 1px solid $gray-100
+            border: 1px solid $grays-gray-100
             border-right: none
             border-left: none
 

@@ -335,7 +335,7 @@ export default {
         right: 0
         bottom: 0
         border-radius: 20px
-        background-color: $gray-300
+        background-color: $grays-gray-300
         transition: .4s
         -webkit-transition: .4s
 
@@ -347,7 +347,7 @@ export default {
             left: 4px
             bottom: 3px
             border-radius: 50%
-            background-color: $main-white
+            background-color: $white
             -webkit-transition: .4s
             transition: .4s
 
@@ -355,7 +355,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
         margin-left: 8px
 
     .site-header__return
@@ -367,7 +367,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
         margin-left: 4px
 
     .site-header__location-btn
@@ -385,7 +385,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
         margin-left: 4px
 
     .site-header__phone
@@ -397,7 +397,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
         margin-left: 4px
 
     .site-header__mode
@@ -409,7 +409,7 @@ export default {
         font-weight: 400
         font-size: 12px
         line-height: 16px
-        color: $gray-300
+        color: $grays-gray-300
         margin-left: 5px
 
     .site-header__references-group
@@ -487,7 +487,7 @@ export default {
 
     .site-header__input-field
         width: 100%
-        background: $gray-100
+        background: $grays-gray-100
         border-radius: 8px
         padding: 12px 46px 12px 24px
         border: none
@@ -496,7 +496,7 @@ export default {
         font-weight: 400
         font-size: 14px
         line-height: 20px
-        color: $gray-400
+        color: $grays-gray-400
 
         &::placeholder
             opacity: 1
@@ -563,7 +563,7 @@ export default {
     .site-header__footer
         padding: 16px 0 18px 0
         margin-top: 18px
-        border-top: 1px solid $gray-200
+        border-top: 1px solid $grays-gray-200
 
     .site-header__content
         display: flex
