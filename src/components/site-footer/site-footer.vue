@@ -1,7 +1,6 @@
 <template>
     <div class="site-footer">
         <div class="site-footer__container">
-            <!-- sit-footer-logo -->
             <div class="site-footer__logo">
                 <a class="site-footer__logo-link" href="#">
                     <img
@@ -11,7 +10,6 @@
                     />
                 </a>
             </div>
-            <!-- site-footer-content -->
             <div class="site-footer__content">
                 <div class="site-footer__group site-footer__group--addresses">
                     <div class="site-footer__addresses">
@@ -130,6 +128,44 @@
                 <div class="site-footer__group site-footer__group--links">
                     <div class="site-footer__column">
                         <button
+                            class="site-footer__collapse site-footer__collapse--company"
+                        >
+                            <p class="site-footer__collapse-label">
+                                О компании
+                            </p>
+                            <div class="site-footer__collapse-ellipse">
+                                <img
+                                    class="site-footer__collapse-svg"
+                                    src="@/assets/images/footer/chevron-down.svg"
+                                    alt="chevron-down"
+                                />
+                            </div>
+                        </button>
+                        <ul class="site-footer__list">
+                            <li class="site-footer__item">
+                                <a class="site-footer__link" href="#">
+                                    О Xcom
+                                </a>
+                            </li>
+                            <li class="site-footer__item">
+                                <a class="site-footer__link" href="#">
+                                    Контакты
+                                </a>
+                            </li>
+                            <li class="site-footer__item">
+                                <a class="site-footer__link" href="#">
+                                    Вакансии
+                                </a>
+                            </li>
+                            <li class="site-footer__item">
+                                <a class="site-footer__link" href="#">
+                                    Медиа
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="site-footer__column">
+                        <button
                             class="site-footer__collapse site-footer__collapse--shopper"
                         >
                             <p class="site-footer__collapse-label">
@@ -186,47 +222,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="site-footer__column">
-                        <button
-                            class="site-footer__collapse site-footer__collapse--company"
-                        >
-                            <p class="site-footer__collapse-label">
-                                О компании
-                            </p>
-                            <div class="site-footer__collapse-ellipse">
-                                <img
-                                    class="site-footer__collapse-svg"
-                                    src="@/assets/images/footer/chevron-down.svg"
-                                    alt="chevron-down"
-                                />
-                            </div>
-                        </button>
-                        <ul class="site-footer__list">
-                            <li class="site-footer__item">
-                                <a class="site-footer__link" href="#">
-                                    О Xcom
-                                </a>
-                            </li>
-                            <li class="site-footer__item">
-                                <a class="site-footer__link" href="#">
-                                    Контакты
-                                </a>
-                            </li>
-                            <li class="site-footer__item">
-                                <a class="site-footer__link" href="#">
-                                    Вакансии
-                                </a>
-                            </li>
-                            <li class="site-footer__item">
-                                <a class="site-footer__link" href="#">
-                                    Медиа
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
-            <!-- site-footer-other -->
             <div class="site-footer__other">
                 <div class="site-footer__mode">
                     <p class="site-footer__mode-label">Будни с 9:00 до 21:00</p>
@@ -351,19 +348,22 @@ export default {
 <style lang="sass">
 .site-footer
     font-family: 'Manrope'
+    margin-top: 40px
+    margin-bottom: 58px
 
     .site-footer__container
-        padding: 70px 48px
+        width: 1332px
+        margin: 0 auto
+        padding-top: 58px
+        border-top: 1px solid $new-gray-300
 
-    // site-footer-logo
     .site-footer__logo
-        margin-bottom: 48px
+        margin-bottom: 68px
 
-    // site-footer-content
     .site-footer__content
         display: flex
         justify-content: space-between
-        margin-bottom: 24px
+        margin-bottom: 58px
 
     .site-footer__group
         display: flex
@@ -401,11 +401,14 @@ export default {
         display: flex
         align-items: center
         grid-column-gap: 12px
-        margin-top: 20px
+        margin-top: 12px
 
     .site-footer__phone
         display: flex
         align-items: center
+        padding: 8px
+        border: 1px solid $new-gray-300
+        border-radius: 8px
 
     .site-footer__phone-label
         font-weight: 600
@@ -452,12 +455,11 @@ export default {
         line-height: 20px
         color: $grays-gray-350
 
-    // site-footer-other
     .site-footer__other
-        padding-top: 24px
+        padding-top: 58px
         display: flex
         align-items: center
-        border-top: 1px solid $grays-gray-150
+        border-top: 1px solid $new-gray-300
 
     .site-footer__mode
         display: none
@@ -519,25 +521,37 @@ export default {
 @media screen and (max-width: 1440px)
     .site-footer
         .site-footer__container
-            padding-left: 32px
-            padding-right: 32px
+            width: 960px
+            padding-top: 0
+            border-top: none
 
-        // site-footer-content
+        .site-footer__logo
+            margin-bottom: 48px
+
+        .site-footer__content
+            margin-bottom: 24px
+
         .site-footer__group--addresses
             grid-column-gap: 93px
 
         .site-footer__group--links
             grid-column-gap: 66px
 
+        .site-footer__phone
+            border: none
+            border-radius: 0
+            padding: 8px 0
+
+        .site-footer__other
+            padding-top: 24px
+
 @media screen and (max-width: 1024px)
     .site-footer
         .site-footer__container
-            padding-left: 68px
-            padding-right: 68px
+            width: 632px
 
-        // site-footer-content
         .site-footer__content
-            margin-bottom: 32px
+            margin-bottom: 24px
 
         .site-footer__addresses
             display: none
@@ -545,29 +559,30 @@ export default {
         .site-footer__phones
             flex-direction: column
             align-items: flex-start
-            grid-row-gap: 20px
+            grid-row-gap: 4px
 
         .site-footer__group--links
             grid-column-gap: 32px
             padding-right: 59px
+            flex-direction: row-reverse
 
-        // site-footer-other
+        .site-footer__social
+            &.site-footer__social--tiktok
+                display: none
+
         .site-footer__yandex
             margin-left: 7px
 
 @media screen and (max-width: 768px)
     .site-footer
         .site-footer__container
-            padding-left: 22px
-            padding-right: 22px
+            width: 276px
 
-        // site-footer-logo
         .site-footer__logo
             margin-bottom: 20px
             padding-top: 20px
             border-top: 1px solid $grays-gray-100
 
-        // site-footer-content
         .site-footer__content
             margin-bottom: 53px
 
@@ -597,7 +612,6 @@ export default {
         .site-footer__list
             display: none
 
-        // site-footer-other
         .site-footer__other
             padding: 0
             border-top: none

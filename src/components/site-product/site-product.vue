@@ -5,17 +5,14 @@
         </div>
         <div class="site-product__preview">
             <Splide class="site-product__slider" :options="splideOptions">
-                <SplideSlide class="site-product__slide">
+                <SplideSlide
+                    class="site-product__slide"
+                    v-for="slide in product.images"
+                    :key="slide.id"
+                >
                     <img
                         class="site-product__slide-svg"
-                        src="@/assets/images/product/acer.png"
-                        alt="Acer"
-                    />
-                </SplideSlide>
-                <SplideSlide class="site-product__slide">
-                    <img
-                        class="site-product__slide-svg"
-                        src="@/assets/images/product/acer.png"
+                        :src="require(`@/assets/images/product/${slide.name}`)"
                         alt="Acer"
                     />
                 </SplideSlide>
@@ -36,7 +33,11 @@
                 </a>
             </div>
             <div class="site-product__info">
-                <a class="site-product__info-title" href="#">Acer Aspire 3</a>
+                <a class="site-product__info-link" :href="product.link">
+                    <p class="site-product__info-link-label">
+                        {{ product.name }}
+                    </p>
+                </a>
                 <div class="site-product__info-model">
                     <p class="site-product__info-text">689788</p>
                     <p class="site-product__info-text">MV7N2RU/A</p>
@@ -44,8 +45,7 @@
                 <p
                     class="site-product__info-text site-product__info-text--description"
                 >
-                    Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD
-                    Graphics 630, DVD-RW, Windows 10 Pro
+                    {{ product.description }}
                 </p>
             </div>
             <ul class="site-product__services">
@@ -74,6 +74,7 @@
                 <div class="site-product__buttons">
                     <button
                         class="site-product__button site-product__button--compare"
+                        @click="onToggleCompare"
                     >
                         <img
                             class="site-product__button-svg"
@@ -83,6 +84,7 @@
                     </button>
                     <button
                         class="site-product__button site-product__button--favorite"
+                        @click="onToggleFavorite"
                     >
                         <img
                             class="site-product__button-svg"
@@ -92,6 +94,7 @@
                     </button>
                     <button
                         class="site-product__button site-product__button--basket"
+                        @click="onToggleBasket"
                     >
                         <img
                             class="site-product__button-svg"
@@ -107,6 +110,7 @@
 
 <script>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
+import { toRefs } from "vue";
 
 export default {
     name: "site-product",
@@ -114,7 +118,16 @@ export default {
         Splide,
         SplideSlide,
     },
-    setup() {
+    props: {
+        product: {
+            type: Object,
+            required: true,
+        },
+    },
+    emits: ["toggleCompare", "toggleFavorite", "toggleBasket"],
+    setup(props, { emit }) {
+        const { product } = toRefs(props);
+
         const splideOptions = {
             rewind: true,
             type: "fade",
@@ -125,8 +138,23 @@ export default {
             },
         };
 
+        const onToggleCompare = () => {
+            emit("toggleCompare", product);
+        };
+
+        const onToggleFavorite = () => {
+            emit("toggleFavorite", product);
+        };
+
+        const onToggleBasket = () => {
+            emit("toggleBasket", product);
+        };
+
         return {
             splideOptions,
+            onToggleCompare,
+            onToggleFavorite,
+            onToggleBasket,
         };
     },
 };
@@ -199,7 +227,7 @@ export default {
             background: $main-blue
 
     .site-product__content
-        padding: 34px 24px
+        padding: 24px 24px 34px 24px
         background: $grays-gray-100
         border-radius: 0 0 24px 24px
 
@@ -226,7 +254,7 @@ export default {
         line-height: 16px
         color: $grays-gray-400
 
-    .site-product__info-title
+    .site-product__info-link-label
         font-weight: 700
         font-size: 14px
         line-height: 18px
@@ -245,6 +273,7 @@ export default {
         color: $grays-gray-400
 
         &.site-product__info-text--description
+            font-weight: 500
             margin-top: 20px
 
     .site-product__services
@@ -253,6 +282,7 @@ export default {
         grid-row-gap: 8px
         margin-top: 20px
         margin-bottom: 32px
+        display: none
 
     .site-product__service
         display: flex
@@ -269,6 +299,7 @@ export default {
         display: flex
         align-items: center
         justify-content: space-between
+        margin-top: 52px
 
     .site-product__price-label-old
         font-weight: 600
@@ -309,7 +340,7 @@ export default {
         max-width: 222px
 
         .site-product__preview
-            padding: 32px 0 0 0
+            padding: 30px 0 8px 0
 
         .site-product__slider
             height: 134px
@@ -321,13 +352,10 @@ export default {
             width: 160px
             height: 134px
 
-        .site-product__pagination
-            display: none
-
         .site-product__content
-            padding: 24px
+            padding: 24px 24px 16px 24px
 
-        .site-product__info-title
+        .site-product__info-link-label
             font-size: 16px
             line-height: 20px
 
@@ -336,10 +364,10 @@ export default {
 
         .site-product__info-text
             &.site-product__info-text--description
-                display: none
+                margin-top: 16px
 
-        .site-product__services
-            margin: 16px 0
+        .site-product__footer
+            margin-top: 16px
 
         .site-product__buttons
             grid-column-gap: 8px
@@ -349,59 +377,43 @@ export default {
 
 @media screen and (max-width: 1024px)
     .site-product
+        max-width: 140px
+        border-radius: 20px
+
         .site-product__preview
-            padding-top: 24px
+            padding: 40px 0 4px 0
 
         .site-product__slider
-            height: 108px
+            height: 99px
 
         .splide__list
-            height: 108px
+            height: 99px
 
         .site-product__slide-svg
-            width: 128px
-            height: 108px
+            width: 100px
+            height: 99px
 
         .site-product__content
-            padding: 16px 24px
+            padding: 11px 8px
 
         .site-product__statistics
-            margin-bottom: 8px
-
-        .site-product__services
-            margin: 12px 0
-
-@media screen and (max-width: 768px)
-    .site-product
-        max-width: 216px
-
-        .site-product__preview
-            padding-top: 29px
-
-        .site-product__slider
-            height: 100px
-
-        .splide__list
-            height: 100px
-
-        .site-product__slide-svg
-            width: 120px
-            height: 100px
-
-        .site-product__content
-            padding: 16px
+            margin-bottom: 4px
 
         .site-product__rating-label
             font-size: 10px
             line-height: 12px
 
         .site-product__feedback-label
+            font-weight: 400
             font-size: 10px
-            line-height: 12px
+            line-height: 14px
 
-        .site-product__info-title
-            font-size: 14px
-            line-height: 18px
+        .site-product__info-link-label
+            font-size: 12px
+            line-height: 16px
+
+        .site-product__info-model
+            margin-top: 4px
 
         .site-product__info-text
             font-size: 10px
@@ -409,14 +421,65 @@ export default {
 
         .site-product__info-text
             &.site-product__info-text--description
-                display: block
                 margin-top: 8px
-
-        .site-product__services
-            display: none
+                line-height: 12px
 
         .site-product__footer
-            margin-top: 12px
+            margin-top: 8px
+
+        .site-product__price-label-old
+            font-size: 10px
+            line-height: 12px
+
+        .site-product__price-label
+            font-size: 12px
+            line-height: 16px
+
+        .site-product__buttons
+            grid-column-gap: 4px
+
+        .site-product__button
+            width: 29px
+            height: 29px
+
+        .site-product__button-svg
+            width: 17px
+            height: 17px
+
+@media screen and (max-width: 768px)
+    .site-product
+        max-width: 140px
+        border-color: $grays-gray-150
+
+        .site-product__preview
+            padding-bottom: 0
+
+        .site-product__pagination
+            display: none
+
+        .site-product__content
+            padding: 11px 8px 10px 8px
+
+        .site-product__feedback-label
+            line-height: 14px
+
+        .site-product__info-link-label
+            font-size: 12px
+            line-height: 16px
+
+        .site-product__info-text
+            font-size: 10px
+            line-height: 14px
+
+        .site-product__info-model
+            margin-top: 8px
+
+        .site-product__info-text
+            &.site-product__info-text--description
+                margin-top: 8px
+
+        .site-product__footer
+            margin-top: 8px
 
         .site-product__price-label-old
             font-size: 10px
@@ -424,6 +487,14 @@ export default {
             font-weight: 500
 
         .site-product__price-label
-            font-size: 14px
-            line-height: 18px
+            font-size: 12px
+            line-height: 16px
+
+        .site-product__button
+            width: 28px
+            height: 28px
+
+        .site-product__button-svg
+            width: 16px
+            height: 16px
 </style>

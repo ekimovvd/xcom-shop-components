@@ -1,7 +1,6 @@
 <template>
     <div class="site-header">
         <div class="site-header__container">
-            <!-- site-header-contacts -->
             <div class="site-header__contacts">
                 <div class="site-header__contacts-group">
                     <div class="site-header__toggle">
@@ -16,9 +15,14 @@
                     </div>
                     <a class="site-header__return" href="#">
                         <img
-                            class="site-header__return-svg"
+                            class="site-header__return-svg site-header__return-svg--arrow-left"
                             src="@/assets/images/header/arrow-left.svg"
                             alt="arrow-left"
+                        />
+                        <img
+                            class="site-header__return-svg site-header__return-svg--health"
+                            src="@/assets/images/header/health.svg"
+                            alt="health"
                         />
                         <p class="site-header__return-label">
                             Возврат на старую версию
@@ -107,7 +111,6 @@
                     </a>
                 </div>
             </div>
-            <!-- site-header-toolbar -->
             <div class="site-header__toolbar">
                 <div class="site-header__block">
                     <div class="site-header__logo-group">
@@ -189,10 +192,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- site-header-footer -->
-        <div class="site-header__footer">
-            <div class="site-header__container">
+            <div class="site-header__footer">
                 <div class="site-header__content">
                     <div class="site-header__group">
                         <a class="site-header__offer" href="#">
@@ -288,10 +288,9 @@ export default {
     font-family: 'Manrope', sans-serif
 
     .site-header__container
+        width: 1344px
         margin: 0 auto
-        padding: 0 48px
 
-    // site-header-contacts
     .site-header__contacts
         margin-bottom: 23px
         display: flex
@@ -370,6 +369,10 @@ export default {
         color: $grays-gray-300
         margin-left: 4px
 
+    .site-header__return-svg
+        &.site-header__return-svg--health
+            display: none
+
     .site-header__location-btn
         display: flex
         align-items: center
@@ -428,7 +431,6 @@ export default {
         color: $main-blue
         margin-left: 4px
 
-    // site-header-toolbar
     .site-header__toolbar
         display: flex
         align-items: center
@@ -559,7 +561,6 @@ export default {
         line-height: 26px
         color: $main-white
 
-    // site-header-footer
     .site-header__footer
         padding: 16px 0 18px 0
         margin-top: 18px
@@ -621,9 +622,21 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-header
-        // site-header-contacts
+        .site-header__container
+            width: 938px
+
+        .site-header__toggle
+            display: none
+
         .site-header__return
-            margin-left: 20px
+            margin-left: 0
+
+        .site-header__return-svg
+            &.site-header__return-svg--arrow-left
+                display: none
+
+            &.site-header__return-svg--health
+                display: block
 
         .site-header__location-btn
             margin-left: 28px
@@ -640,11 +653,6 @@ export default {
         .site-header__references-group
             grid-column-gap: 28px
 
-        .site-header__reference
-            &.site-header__reference--call
-                display: none
-
-        // site-header-toolbar
         .site-header__profile
             margin-left: 46px
 
@@ -653,11 +661,6 @@ export default {
 
         .site-header__profile-img
             margin-left: 0
-
-        // site-header-footer
-        .site-header__footer
-            border-radius: 0px 0px 24px 24px
-            box-shadow: 0px 4px 16px rgba(99, 94, 130, 0.16)
 
         .site-header__section
             &.site-header__section--two,
@@ -669,14 +672,11 @@ export default {
         padding: 12px 0
 
         .site-header__container
-            margin: 0 auto
-            padding: 0 68px
+            width: 632px
 
-        // site-header-contacts
         .site-header__contacts
             display: none
 
-        // site-header-toolbar
         .site-header__block
             grid-column-gap: 24px
 
@@ -692,7 +692,6 @@ export default {
         .site-header__profile
             display: none
 
-        // site-header-footer
         .site-header__footer
             display: none
 
@@ -701,10 +700,8 @@ export default {
         padding: 14px 0
 
         .site-header__container
-            margin: 0 auto
-            padding: 0 24px
+            width: 276px
 
-        // site-header-toolbar
         .site-header__block
             flex-direction: column
             align-items: flex-start
