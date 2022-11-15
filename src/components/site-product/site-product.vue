@@ -72,21 +72,27 @@
                     <p class="site-product__price-label">43 925 ₽</p>
                 </div>
                 <div class="site-product__buttons">
-                    <button class="site-product__button">
+                    <button
+                        class="site-product__button site-product__button--compare"
+                    >
                         <img
                             class="site-product__button-svg"
                             src="@/assets/images/product/compare.svg"
                             alt="compare"
                         />
                     </button>
-                    <button class="site-product__button">
+                    <button
+                        class="site-product__button site-product__button--favorite"
+                    >
                         <img
                             class="site-product__button-svg"
                             src="@/assets/images/product/favorite.svg"
                             alt="favorite"
                         />
                     </button>
-                    <button class="site-product__button">
+                    <button
+                        class="site-product__button site-product__button--basket"
+                    >
                         <img
                             class="site-product__button-svg"
                             src="@/assets/images/product/basket.svg"
@@ -129,9 +135,11 @@ export default {
 <style lang="sass">
 .site-product
     position: relative
-    border: 1px solid $grays-gray-200
     border-radius: 24px
     font-family: 'Manrope'
+    border: 1px solid $grays-gray-200
+    max-width: 318px
+    width: 100%
 
     .site-product__tag
         background: $other-yellow-400
@@ -150,20 +158,26 @@ export default {
         color: $old-white
 
     .site-product__preview
-        height: 190px
+        padding: 14px 0 4px 0
 
     .site-product__slider
-        width: 100%
-        height: 100%
+        height: 172px
+
+    .splide__list
+        height: 172px
 
     .site-product__slide
         display: flex
         align-items: center
         justify-content: center
 
+    .site-product__slide-svg
+        width: 190px
+        height: 172px
+
     .site-product__pagination
         grid-column-gap: 4px
-        bottom: 4px
+        bottom: 0
 
         li
             width: 4px
@@ -183,10 +197,6 @@ export default {
             transform: scale(1)
             opacity: 1
             background: $main-blue
-
-    .splide__track
-        width: 100%
-        height: 100%
 
     .site-product__content
         padding: 34px 24px
@@ -208,9 +218,9 @@ export default {
         font-size: 12px
         line-height: 16px
         color: $other-yellow-400
-        margin-left: 6px
+        margin-left: 4px
 
-    .site-product__feedback
+    .site-product__feedback-label
         font-weight: 500
         font-size: 12px
         line-height: 16px
@@ -293,4 +303,127 @@ export default {
 
         &.site-product__button--view-primary
             background: $main-blue
+
+@media screen and (max-width: 1440px)
+    .site-product
+        max-width: 222px
+
+        .site-product__preview
+            padding: 32px 0 0 0
+
+        .site-product__slider
+            height: 134px
+
+        .splide__list
+            height: 134px
+
+        .site-product__slide-svg
+            width: 160px
+            height: 134px
+
+        .site-product__pagination
+            display: none
+
+        .site-product__content
+            padding: 24px
+
+        .site-product__info-title
+            font-size: 16px
+            line-height: 20px
+
+        .site-product__info-model
+            margin-top: 8px
+
+        .site-product__info-text
+            &.site-product__info-text--description
+                display: none
+
+        .site-product__services
+            margin: 16px 0
+
+        .site-product__buttons
+            grid-column-gap: 8px
+
+        .site-product__button--compare
+            display: none
+
+@media screen and (max-width: 1024px)
+    .site-product
+        .site-product__preview
+            padding-top: 24px
+
+        .site-product__slider
+            height: 108px
+
+        .splide__list
+            height: 108px
+
+        .site-product__slide-svg
+            width: 128px
+            height: 108px
+
+        .site-product__content
+            padding: 16px 24px
+
+        .site-product__statistics
+            margin-bottom: 8px
+
+        .site-product__services
+            margin: 12px 0
+
+@media screen and (max-width: 768px)
+    .site-product
+        max-width: 216px
+
+        .site-product__preview
+            padding-top: 29px
+
+        .site-product__slider
+            height: 100px
+
+        .splide__list
+            height: 100px
+
+        .site-product__slide-svg
+            width: 120px
+            height: 100px
+
+        .site-product__content
+            padding: 16px
+
+        .site-product__rating-label
+            font-size: 10px
+            line-height: 12px
+
+        .site-product__feedback-label
+            font-size: 10px
+            line-height: 12px
+
+        .site-product__info-title
+            font-size: 14px
+            line-height: 18px
+
+        .site-product__info-text
+            font-size: 10px
+            line-height: 14px
+
+        .site-product__info-text
+            &.site-product__info-text--description
+                display: block
+                margin-top: 8px
+
+        .site-product__services
+            display: none
+
+        .site-product__footer
+            margin-top: 12px
+
+        .site-product__price-label-old
+            font-size: 10px
+            line-height: 12px
+            font-weight: 500
+
+        .site-product__price-label
+            font-size: 14px
+            line-height: 18px
 </style>

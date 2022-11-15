@@ -21,6 +21,5 @@ export default {
 
 <style lang="sass">
 .product
-    width: 318px
     margin-left: 48px
 </style>
