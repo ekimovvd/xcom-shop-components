@@ -179,6 +179,8 @@ export default {
 
     .site-product__preview
         padding: 14px 0 4px 0
+        border-radius: 24px 24px 0px 0px
+        background: $main-white
 
     .site-product__slider
         height: 172px
@@ -355,6 +357,7 @@ export default {
 
         .site-product__preview
             padding: 40px 0 4px 0
+            border-radius: 20px 20px 0 0
 
         .site-product__slider
             height: 99px
@@ -368,6 +371,7 @@ export default {
 
         .site-product__content
             padding: 11px 8px
+            border-radius: 0 0 20px 20px
 
         .site-product__statistics
             margin-bottom: 4px
