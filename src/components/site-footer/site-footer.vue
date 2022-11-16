@@ -454,7 +454,7 @@ export default {
         color: $grays-gray-350
 
     .site-footer__other
-        padding: 58px 59px
+        padding: 58px 0 59px 0
         display: flex
         align-items: center
         border-top: 1px solid $new-gray-300
