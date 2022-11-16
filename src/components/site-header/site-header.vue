@@ -192,7 +192,9 @@
                     </div>
                 </div>
             </div>
-            <div class="site-header__footer">
+        </div>
+        <div class="site-header__footer">
+            <div class="site-header__container">
                 <div class="site-header__content">
                     <div class="site-header__group">
                         <a class="site-header__offer" href="#">

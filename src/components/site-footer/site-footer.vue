@@ -347,7 +347,7 @@ export default {
 
 <style lang="sass">
 .site-footer
-    font-family: 'Manrope'
+    font-family: 'Manrope', sans-serif
 
     .site-footer__container
         width: 1332px

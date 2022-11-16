@@ -156,7 +156,7 @@ export default {
 .site-product
     position: relative
     border-radius: 24px
-    font-family: 'Manrope'
+    font-family: 'Manrope', sans-serif
     border: 1px solid $grays-gray-200
     max-width: 318px
     width: 100%

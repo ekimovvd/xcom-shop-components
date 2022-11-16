@@ -90,7 +90,7 @@ export default {
         margin: 0 auto
 
     .site-products__header
-        font-family: 'Manrope'
+        font-family: 'Manrope', sans-serif
         display: flex
         align-items: center
         justify-content: space-between
