@@ -1,7 +1,7 @@
 <template>
     <SiteHeader />
     <SiteProducts :products="products" />
-    <SiteFooter />
+    <SiteFooter class="footer" />
 </template>
 
 <script>
@@ -98,6 +98,6 @@ export default {
 </script>
 
 <style lang="sass">
-.product
-    margin-left: 48px
+.footer
+    margin-top: 50px
 </style>

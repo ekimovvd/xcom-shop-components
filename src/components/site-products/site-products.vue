@@ -35,6 +35,7 @@
                     @toggleCompare="onToggleCompare"
                     @toggleFavorite="onToggleFavorite"
                     @toggleBasket="onToggleBasket"
+                    @toggleQuantity="onToggleQuantity"
                 />
             </div>
         </div>
@@ -68,10 +69,15 @@ export default {
             console.log("Toggle Basket", product.value);
         };
 
+        const onToggleQuantity = () => {
+            console.log("Toggle quantity");
+        };
+
         return {
             onToggleCompare,
             onToggleFavorite,
             onToggleBasket,
+            onToggleQuantity,
         };
     },
 };

@@ -48,24 +48,6 @@
                     {{ product.description }}
                 </p>
             </div>
-            <ul class="site-product__services">
-                <li class="site-product__service">
-                    <img
-                        class="site-product__service-svg"
-                        src="@/assets/images/product/delivery.svg"
-                        alt="delivery"
-                    />
-                    <p class="site-product__service-label">Доставка завтра</p>
-                </li>
-                <li class="site-product__service">
-                    <img
-                        class="site-product__service-svg"
-                        src="@/assets/images/product/package.svg"
-                        alt="package"
-                    />
-                    <p class="site-product__service-label">Самовывоз сегодня</p>
-                </li>
-            </ul>
             <div class="site-product__footer">
                 <div class="site-product__price">
                     <p class="site-product__price-label-old">51 686 ₽</p>
@@ -124,7 +106,12 @@ export default {
             required: true,
         },
     },
-    emits: ["toggleCompare", "toggleFavorite", "toggleBasket"],
+    emits: [
+        "toggleCompare",
+        "toggleFavorite",
+        "toggleBasket",
+        "toggleQuantity",
+    ],
     setup(props, { emit }) {
         const { product } = toRefs(props);
 
@@ -150,11 +137,16 @@ export default {
             emit("toggleBasket", product);
         };
 
+        const onToggleQuantity = () => {
+            emit("toggleQuantity");
+        };
+
         return {
             splideOptions,
             onToggleCompare,
             onToggleFavorite,
             onToggleBasket,
+            onToggleQuantity,
         };
     },
 };
@@ -275,25 +267,6 @@ export default {
         &.site-product__info-text--description
             font-weight: 500
             margin-top: 20px
-
-    .site-product__services
-        display: flex
-        flex-direction: column
-        grid-row-gap: 8px
-        margin-top: 20px
-        margin-bottom: 32px
-        display: none
-
-    .site-product__service
-        display: flex
-        align-items: center
-        grid-column-gap: 8px
-
-    .site-product__service-label
-        font-weight: 500
-        font-size: 12px
-        line-height: 16px
-        color: $new-gray-500
 
     .site-product__footer
         display: flex

@@ -348,8 +348,6 @@ export default {
 <style lang="sass">
 .site-footer
     font-family: 'Manrope'
-    margin-top: 40px
-    margin-bottom: 58px
 
     .site-footer__container
         width: 1332px
@@ -456,7 +454,7 @@ export default {
         color: $grays-gray-350
 
     .site-footer__other
-        padding-top: 58px
+        padding: 58px 59px
         display: flex
         align-items: center
         border-top: 1px solid $new-gray-300
@@ -543,7 +541,7 @@ export default {
             padding: 8px 0
 
         .site-footer__other
-            padding-top: 24px
+            padding: 24px 0 30px 0
 
 @media screen and (max-width: 1024px)
     .site-footer
@@ -565,6 +563,9 @@ export default {
             grid-column-gap: 32px
             padding-right: 59px
             flex-direction: row-reverse
+
+        .site-footer__other
+            padding-bottom: 39px
 
         .site-footer__social
             &.site-footer__social--tiktok
@@ -613,7 +614,7 @@ export default {
             display: none
 
         .site-footer__other
-            padding: 0
+            padding: 0 0 22px 0
             border-top: none
             flex-direction: column
             align-items: flex-start
