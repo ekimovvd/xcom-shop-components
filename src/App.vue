@@ -3,18 +3,29 @@
     <SiteFilter
         class="filter"
         id="1"
-        :values="filters"
+        :list="filters"
         @toggleCheckbox="onToggleCheckbox"
+        @toggleRadio="onToggleRadio"
+    />
+    <SiteFilterRange
+        class="filter"
+        :min="rangeMinValue"
+        :max="rangeMaxValue"
+        :minValue="0"
+        :maxValue="4500"
+        @changeMin="onChangeRangeMinValue"
+        @changeMax="onChangeRangeMaxValue"
     />
     <SiteProducts :products="products" />
     <SiteFooter class="footer" />
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteFilter from "@/components/site-filter/site-filter.vue";
+import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
 import SiteProducts from "@/components/site-products/site-products.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 
@@ -23,10 +34,14 @@ export default {
     components: {
         SiteHeader,
         SiteFilter,
+        SiteFilterRange,
         SiteProducts,
         SiteFooter,
     },
     setup() {
+        let rangeMinValue = ref(0);
+        let rangeMaxValue = ref(4500);
+
         const products = computed(() => [
             {
                 id: 1,
@@ -165,10 +180,27 @@ export default {
             console.log("Toggle checkbox", value);
         };
 
+        const onToggleRadio = (value) => {
+            console.log("Radio toggle", value);
+        };
+
+        const onChangeRangeMinValue = (value) => {
+            rangeMinValue.value = value;
+        };
+
+        const onChangeRangeMaxValue = (value) => {
+            rangeMaxValue.value = value;
+        };
+
         return {
+            rangeMinValue,
+            rangeMaxValue,
             products,
             filters,
             onToggleCheckbox,
+            onToggleRadio,
+            onChangeRangeMinValue,
+            onChangeRangeMaxValue,
         };
     },
 };
