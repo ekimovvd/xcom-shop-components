@@ -1,17 +1,16 @@
 <template>
     <div class="site-filter-range" :class="getIsHiddenClass">
-        <div class="site-filter-range__header">
-            <h6 class="site-filter-range__title">
+        <button class="site-filter-range__header" @click="onToggleIsHidden">
+            <p class="site-filter-range__header-title">
                 Цена, <span class="site-filter-range__text">руб</span>
-            </h6>
-            <button class="site-filter-range__toggle" @click="onToggleIsHidden">
-                <img
-                    class="site-filter-range__toggle-svg"
-                    src="@/assets/images/filter/chevron-up.svg"
-                    alt="chevron-up"
-                />
-            </button>
-        </div>
+                <span class="site-filter-range__header-flag"></span>
+            </p>
+            <img
+                class="site-filter-range__header-svg"
+                src="@/assets/images/filter/chevron-up.svg"
+                alt="chevron-up"
+            />
+        </button>
         <div class="site-filter-range__content">
             <div class="site-filter-range__inputs">
                 <div class="site-filter-range__group">
@@ -195,29 +194,44 @@ export default {
         .site-filter-range__content
             display: none
 
-        .site-filter-range__toggle-svg
+        .site-filter-range__header-svg
             transform: rotate(180deg)
 
     .site-filter-range__header
         display: flex
         align-items: center
-        justify-content: space-between
-
-    .site-filter-range__title
-        font-weight: 700
-        font-size: 14px
-        line-height: 18px
-        color: $main-black
-
-    .site-filter-range__text
-        color: $grays-gray-300
-
-    .site-filter-range__toggle
         background: none
         padding: 0
         outline: none
         border: none
         cursor: pointer
+
+    .site-filter-range__header-title
+        font-weight: 700
+        font-size: 14px
+        line-height: 18px
+        color: $main-black
+
+    .site-filter-range__header-title
+        font-family: 'Manrope', sans-serif
+        font-weight: 700
+        font-size: 14px
+        line-height: 18px
+        color: $main-black
+
+    .site-filter-range__header-flag
+        margin-left: 8px
+        width: 8px
+        height: 8px
+        background: $main-blue
+        border-radius: 50%
+        display: inline-block
+
+    .site-filter-range__header-svg
+        margin-left: auto
+
+    .site-filter-range__text
+        color: $grays-gray-300
 
     .site-filter-range__content
         display: flex
@@ -241,7 +255,7 @@ export default {
         -moz-appearance: textfield
         width: 131px
         font-family: 'Manrope', sans-serif
-        font-weight: 400
+        font-weight: 500
         font-size: 12px
         line-height: 16px
         color: $main-black
@@ -334,4 +348,32 @@ export default {
             width: 89px
             padding-left: 30px
             padding-right: 25px
+
+@media screen and (max-width: 1024px)
+    .site-filter-range
+        width: 314px
+        padding: 16px 24px 24px 24px
+
+        .site-filter-range__inputs
+            grid-column-gap: 16px
+
+        .site-filter-range__input
+            width: 125px
+
+@media screen and (max-width: 768px)
+    .site-filter-range
+        width: 100%
+        padding: 16px 0 20px 0
+        background: $white
+        box-shadow: none
+        grid-row-gap: 26px
+
+        .site-filter-range__content
+            grid-row-gap: 26px
+
+        .site-filter-range__inputs
+            grid-column-gap: 12px
+
+        .site-filter-range__input
+            width: 132px
 </style>

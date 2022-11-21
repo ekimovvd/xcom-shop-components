@@ -209,8 +209,4 @@ export default {
 <style lang="sass">
 .footer
     margin-top: 50px
-
-.filter
-    margin-left: 50px
-    margin-bottom: 50px
 </style>

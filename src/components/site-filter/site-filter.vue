@@ -1,15 +1,15 @@
 <template>
     <div class="site-filter" :class="getIsHiddenClass">
-        <div class="site-filter__header">
-            <h6 class="site-filter__title">Бренд</h6>
-            <button class="site-filter__toggle" @click="onToggleIsHidden">
-                <img
-                    class="site-filter__toggle-svg"
-                    src="@/assets/images/filter/chevron-up.svg"
-                    alt="chevron-up"
-                />
-            </button>
-        </div>
+        <button class="site-filter__header" @click="onToggleIsHidden">
+            <p class="site-filter__header-title">
+                Бренд <span class="site-filter__header-flag"></span>
+            </p>
+            <img
+                class="site-filter__header-svg"
+                src="@/assets/images/filter/chevron-up.svg"
+                alt="chevron-up"
+            />
+        </button>
         <div class="site-filter__content">
             <div class="site-footer__search">
                 <input
@@ -24,7 +24,7 @@
                     alt="search"
                 />
             </div>
-            <!-- <ul class="site-filter__list">
+            <ul class="site-filter__list">
                 <li
                     class="site-filter__item"
                     v-for="item in getList"
@@ -34,27 +34,28 @@
                         <input
                             class="site-filter__item-input site-filter__item-input--checkbox"
                             type="checkbox"
+                            :value="item.id"
                             @change="onToggleCheckbox(item)"
                         />
                         <span
                             class="site-filter__item-span site-filter__item-span--checkbox"
                         ></span>
+                        <div class="site-filter__item-info">
+                            <p
+                                class="site-filter__item-text site-filter__item-text--name"
+                            >
+                                {{ item.name }}
+                            </p>
+                            <p
+                                class="site-filter__item-text site-filter__item-text--quantity"
+                            >
+                                {{ item.quantity }}
+                            </p>
+                        </div>
                     </label>
-                    <div class="site-filter__item-info">
-                        <p
-                            class="site-filter__item-text site-filter__item-text--name"
-                        >
-                            {{ item.name }}
-                        </p>
-                        <p
-                            class="site-filter__item-text site-filter__item-text--quantity"
-                        >
-                            {{ item.quantity }}
-                        </p>
-                    </div>
                 </li>
-            </ul> -->
-            <ul class="site-filter__list">
+            </ul>
+            <!-- <ul class="site-filter__list">
                 <li
                     class="site-filter__item"
                     v-for="item in getList"
@@ -70,28 +71,35 @@
                         <span
                             class="site-filter__item-span site-filter__item-span--radio"
                         ></span>
+                        <div class="site-filter__item-info">
+                            <p
+                                class="site-filter__item-text site-filter__item-text--name"
+                            >
+                                {{ item.name }}
+                            </p>
+                            <p
+                                class="site-filter__item-text site-filter__item-text--quantity"
+                            >
+                                {{ item.quantity }}
+                            </p>
+                        </div>
                     </label>
-                    <div class="site-filter__item-info">
-                        <p
-                            class="site-filter__item-text site-filter__item-text--name"
-                        >
-                            {{ item.name }}
-                        </p>
-                        <p
-                            class="site-filter__item-text site-filter__item-text--quantity"
-                        >
-                            {{ item.quantity }}
-                        </p>
-                    </div>
                 </li>
-            </ul>
+            </ul> -->
+            <button
+                class="site-filter__show-all"
+                v-if="getIsShowAll"
+                @click="onToggleIsShowAll"
+            >
+                <p class="site-filter__show-all-label">Показать все</p>
+            </button>
             <div class="site-filter__rectangel"></div>
         </div>
     </div>
 </template>
 
 <script>
-import { computed, ref, toRefs } from "vue";
+import { computed, reactive, ref, toRefs, onBeforeUnmount } from "vue";
 
 export default {
     name: "site-filter",
@@ -106,20 +114,41 @@ export default {
         },
     },
     emits: ["toggleCheckbox", "toggleRadio"],
+    created() {
+        window.addEventListener("resize", this.onChangeResize);
+    },
     setup(props, { emit }) {
+        const widthSmallScreen = 768;
+
         const search = ref("");
         const isHidden = ref(false);
+        const isShowAll = ref(false);
 
+        const screen = reactive({
+            width: 0,
+            height: 0,
+        });
         const { list } = toRefs(props);
 
+        onBeforeUnmount(() => {
+            window.removeEventListener("resize", onChangeResize);
+        });
+
         const getList = computed(() => {
-            return list.value.filter((item) =>
-                item.name.toLowerCase().includes(search.value)
-            );
+            if (screen.width > widthSmallScreen) {
+                return list.value.filter((item) =>
+                    item.name.toLowerCase().includes(search.value)
+                );
+            }
+            return isShowAll.value ? list.value : list.value.slice(0, 7);
         });
 
         const getIsHiddenClass = computed(() => {
             return isHidden.value ? "site-filter--hidden" : "";
+        });
+
+        const getIsShowAll = computed(() => {
+            return screen.width < widthSmallScreen && !isShowAll.value;
         });
 
         const onToggleCheckbox = (value) => {
@@ -134,14 +163,27 @@ export default {
             isHidden.value = !isHidden.value;
         };
 
+        const onToggleIsShowAll = () => {
+            isShowAll.value = !isShowAll.value;
+        };
+
+        const onChangeResize = () => {
+            screen.width = window.innerWidth;
+            screen.height = window.innerHeight;
+        };
+
         return {
+            screen,
             search,
             isHidden,
             getList,
             getIsHiddenClass,
+            getIsShowAll,
             onToggleCheckbox,
             onToggleRadio,
             onToggleIsHidden,
+            onToggleIsShowAll,
+            onChangeResize,
         };
     },
 };
@@ -166,26 +208,35 @@ export default {
         .site-filter__content
             display: none
 
-        .site-filter__toggle-svg
+        .site-filter__header-svg
             transform: rotate(180deg)
 
     .site-filter__header
         display: flex
         align-items: center
-        justify-content: space-between
-
-    .site-filter__title
-        font-weight: 700
-        font-size: 14px
-        line-height: 18px
-        color: $main-black
-
-    .site-filter__toggle
         background: none
         padding: 0
         outline: none
         border: none
         cursor: pointer
+
+    .site-filter__header-title
+        font-family: 'Manrope', sans-serif
+        font-weight: 700
+        font-size: 14px
+        line-height: 18px
+        color: $main-black
+
+    .site-filter__header-flag
+        margin-left: 8px
+        width: 8px
+        height: 8px
+        background: $main-blue
+        border-radius: 50%
+        display: inline-block
+
+    .site-filter__header-svg
+        margin-left: auto
 
     .site-filter__content
         display: flex
@@ -247,6 +298,7 @@ export default {
         cursor: pointer
         height: 24px
         position: relative
+        width: 100%
 
     .site-filter__item-input
         outline: none
@@ -292,12 +344,12 @@ export default {
     .site-filter__item-info
         display: flex
         align-items: center
+        margin-left: 36px
         justify-content: space-between
         font-weight: 400
         font-size: 14px
         line-height: 20px
         width: 100%
-        margin-left: 36px
 
     .site-filter__item-text
         &.site-filter__item-text--name
@@ -316,6 +368,22 @@ export default {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)
         border-radius: 0 0 24px 24px
 
+    .site-filter__show-all
+        background: none
+        outline: none
+        border: none
+        padding: 0
+        cursor: pointer
+        margin-right: auto
+        display: none
+
+    .site-filter__show-all-label
+        font-family: 'Manrope', sans-serif
+        font-weight: 500
+        font-size: 12px
+        line-height: 16px
+        color: $main-blue
+
 @media screen and (max-width: 1440px)
     .site-filter
         width: 222px
@@ -323,4 +391,73 @@ export default {
         .site-filter__item-info
             justify-content: flex-start
             grid-column-gap: 5px
+
+@media screen and (max-width: 1024px)
+    .site-filter
+        width: 314px
+        padding: 16px 24px 0 24px
+
+        .site-filter__list
+            max-height: 335px
+
+@media screen and (max-width: 768px)
+    .site-filter
+        width: 100%
+        padding: 16px 0
+        grid-row-gap: 16px
+        background: $main-white
+        box-shadow: none
+
+        .site-footer__search
+            display: none
+
+        .site-filter__list
+            max-height: 100%
+            flex-wrap: wrap
+            flex-direction: row
+            grid-gap: 8px
+
+        .site-filter__item-label
+            width: auto
+            padding: 8px 12px
+            height: 32px
+            background: $main-white
+
+        .site-filter__item-span
+            width: 100%
+            height: 100%
+            border: 1px solid $grays-gray-100
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+
+            &.site-filter__item-span--radio,
+            &.site-filter__item-span--checkbox
+                border-radius: 30px
+
+        .site-filter__item-input
+            &.site-filter__item-input--checkbox
+                &:checked + .site-filter__item-span--checkbox
+                    border: 1px solid $main-blue
+
+                    &::before
+                        width: 0
+                        height: 0
+                        background-image: none
+
+            &.site-filter__item-input--radio
+                &:checked + .site-filter__item-span--radio
+                    border: 1px solid $main-blue
+
+        .site-filter__item-info
+            font-size: 12px
+            line-height: 16px
+            margin-left: 0
+
+        .site-filter__rectangel
+            display: none
+
+        .site-filter__show-all
+            display: block
 </style>
