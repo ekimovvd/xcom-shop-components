@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <SiteConfigurator />
+    <SiteServices />
     <SiteFilter
         class="filter"
         id="1"
@@ -26,6 +27,7 @@ import { computed, ref } from "vue";
 
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteConfigurator from "@/components/site-configurator/site-configurator.vue";
+import SiteServices from "@/components/site-services/site-services.vue";
 import SiteFilter from "@/components/site-filter/site-filter.vue";
 import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
 import SiteProducts from "@/components/site-products/site-products.vue";
@@ -36,6 +38,7 @@ export default {
     components: {
         SiteHeader,
         SiteConfigurator,
+        SiteServices,
         SiteFilter,
         SiteFilterRange,
         SiteProducts,
