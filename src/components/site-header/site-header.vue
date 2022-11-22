@@ -290,8 +290,7 @@ export default {
     font-family: 'Manrope', sans-serif
 
     .site-header__container
-        width: 1344px
-        margin: 0 auto
+        @include container
 
     .site-header__contacts
         margin-bottom: 23px
@@ -624,9 +623,6 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-header
-        .site-header__container
-            width: 938px
-
         .site-header__toggle
             display: none
 
@@ -674,7 +670,7 @@ export default {
         padding: 12px 0
 
         .site-header__container
-            width: 632px
+            // width: 632px
 
         .site-header__contacts
             display: none
@@ -700,9 +696,6 @@ export default {
 @media screen and (max-width: 768px)
     .site-header
         padding: 14px 0
-
-        .site-header__container
-            width: 276px
 
         .site-header__block
             flex-direction: column

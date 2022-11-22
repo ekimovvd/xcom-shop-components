@@ -350,8 +350,7 @@ export default {
     font-family: 'Manrope', sans-serif
 
     .site-footer__container
-        width: 1332px
-        margin: 0 auto
+        @include container
         padding-top: 58px
         border-top: 1px solid $new-gray-300
 
@@ -519,7 +518,6 @@ export default {
 @media screen and (max-width: 1440px)
     .site-footer
         .site-footer__container
-            width: 960px
             padding-top: 0
             border-top: none
 
@@ -545,9 +543,6 @@ export default {
 
 @media screen and (max-width: 1024px)
     .site-footer
-        .site-footer__container
-            width: 632px
-
         .site-footer__content
             margin-bottom: 24px
 
@@ -576,9 +571,6 @@ export default {
 
 @media screen and (max-width: 768px)
     .site-footer
-        .site-footer__container
-            width: 276px
-
         .site-footer__logo
             margin-bottom: 20px
             padding-top: 20px

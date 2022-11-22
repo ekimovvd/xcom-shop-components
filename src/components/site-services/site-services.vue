@@ -1,21 +1,10 @@
 <template>
     <div class="site-services">
-        <div class="site-services__container">
-            <div class="site-services__header">
-                <h2 class="site-services__title">Услуги</h2>
-                <button
-                    class="site-services__toggle"
-                    :class="getToggleClass"
-                    @click="onToggleIsHidden"
-                >
-                    <img
-                        class="site-services__toggle-svg"
-                        src="@/assets/images/services/chevron-up.svg"
-                        alt="chevron"
-                    />
-                </button>
-            </div>
-        </div>
+        <SiteToggle
+            title="Услуги"
+            :isHidden="isHidden"
+            @toggle="onToggleIsHidden"
+        />
         <div class="site-services__content" v-if="!isHidden">
             <div class="site-services__container">
                 <div class="site-services__section">
@@ -139,16 +128,17 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { ref } from "vue";
+
+import SiteToggle from "@/components/site-toggle/site-toggle.vue";
 
 export default {
     name: "site-services",
+    components: {
+        SiteToggle,
+    },
     setup() {
         const isHidden = ref(false);
-
-        const getToggleClass = computed(() => {
-            return isHidden.value ? "site-services__toggle--hidden" : "";
-        });
 
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
@@ -156,7 +146,6 @@ export default {
 
         return {
             isHidden,
-            getToggleClass,
             onToggleIsHidden,
         };
     },
@@ -166,37 +155,8 @@ export default {
 <style lang="sass">
 .site-services
     .site-services__container
-        width: 1344px
-        margin: 0 auto
+        @include container
         font-family: 'Manrope', sans-serif
-
-    .site-services__header
-        display: flex
-        align-items: center
-        justify-content: space-between
-
-    .site-services__title
-        font-weight: 700
-        font-size: 40px
-        line-height: 48px
-        color: $main-black
-
-    .site-services__toggle
-        background: $grays-gray-100
-        border: none
-        outline: none
-        padding: 0
-        cursor: pointer
-        width: 32px
-        height: 32px
-        border-radius: 50%
-        display: flex
-        align-items: center
-        justify-content: center
-
-        &.site-services__toggle--hidden
-            .site-services__toggle-svg
-                transform: rotate(-180deg)
 
     .site-services__content
         padding: 106px 0
@@ -252,6 +212,7 @@ export default {
         padding: 24px 16px 16px 24px
         display: flex
         flex-direction: column
+        height: 138px
 
     .site-services__label
         font-weight: 500
@@ -273,9 +234,6 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-services
-        .site-services__container
-            width: 960px
-
         .site-services__content
             padding: 82px 0
 
@@ -292,12 +250,11 @@ export default {
 
         .site-services__cards
             grid-template-columns: repeat(2, 222px)
-
-        .site-services__cards
             grid-gap: 24px
 
         .site-services__card
             padding: 20px 16px
+            height: 110px
 
         .site-services__label
             font-size: 14px
@@ -306,13 +263,6 @@ export default {
 
 @media screen and (max-width: 1024px)
     .site-services
-        .site-services__container
-            width: 632px
-
-        .site-services__title
-            font-size: 32px
-            line-height: 40px
-
         .site-services__content
             padding: 64px 0
 
@@ -343,13 +293,6 @@ export default {
 
 @media screen and (max-width: 768px)
     .site-services
-        .site-services__container
-            width: 292px
-
-        .site-services__title
-            font-size: 28px
-            line-height: 36px
-
         .site-services__content
             margin-top: 45px
             padding: 64px 0 56px 0
@@ -379,9 +322,6 @@ export default {
 
         .site-services__cards
             grid-template-columns: 1fr
-
-        .site-services__card
-            min-height: 102px
 
         .site-services__label
             width: 100%

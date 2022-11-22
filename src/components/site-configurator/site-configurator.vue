@@ -1,21 +1,12 @@
 <template>
     <div class="site-configurator">
-        <div class="site-configurator__container">
-            <div class="site-configurator__header">
-                <h2 class="site-configurator__title">Конфигураторы</h2>
-                <button
-                    class="site-configurator__toggle"
-                    :class="getToggleClass"
-                    @click="onToggleIsHidden"
-                >
-                    <img
-                        class="site-configurator__toggle-svg"
-                        src="@/assets/images/configurator/chevron-up.svg"
-                        alt="chevron"
-                    />
-                </button>
-            </div>
-            <div class="site-configurator__content" v-if="!isHidden">
+        <SiteToggle
+            title="Конфигураторы"
+            :isHidden="isHidden"
+            @toggle="onToggleIsHidden"
+        />
+        <div class="site-configurator__container" v-if="!isHidden">
+            <div class="site-configurator__content">
                 <div class="site-configurator__group">
                     <ul class="site-configurator__cards">
                         <li class="site-configurator__card">
@@ -166,16 +157,17 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { ref } from "vue";
+
+import SiteToggle from "@/components/site-toggle/site-toggle.vue";
 
 export default {
     name: "site-configurator",
+    components: {
+        SiteToggle,
+    },
     setup() {
         const isHidden = ref(false);
-
-        const getToggleClass = computed(() => {
-            return isHidden.value ? "site-configurator__toggle--hidden" : "";
-        });
 
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
@@ -183,7 +175,6 @@ export default {
 
         return {
             isHidden,
-            getToggleClass,
             onToggleIsHidden,
         };
     },
@@ -193,37 +184,7 @@ export default {
 <style lang="sass">
 .site-configurator
     .site-configurator__container
-        width: 1344px
-        margin: 0 auto
-
-    .site-configurator__header
-        display: flex
-        align-items: center
-        justify-content: space-between
-        font-family: 'Manrope', sans-serif
-
-    .site-configurator__title
-        font-weight: 700
-        font-size: 40px
-        line-height: 48px
-        color: $main-black
-
-    .site-configurator__toggle
-        background: $grays-gray-100
-        border: none
-        outline: none
-        padding: 0
-        cursor: pointer
-        width: 32px
-        height: 32px
-        border-radius: 50%
-        display: flex
-        align-items: center
-        justify-content: center
-
-        &.site-configurator__toggle--hidden
-            .site-configurator__toggle-svg
-                transform: rotate(-180deg)
+        @include container
 
     .site-configurator__content
         display: flex
@@ -304,9 +265,6 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-configurator
-        .site-configurator__container
-            width: 960px
-
         .site-configurator__link
             overflow: hidden
 
@@ -354,26 +312,12 @@ export default {
 
 @media screen and (max-width: 1024px)
     .site-configurator
-        .site-configurator__container
-            width: 632px
-
-        .site-configurator__title
-            font-size: 32px
-            line-height: 40px
-
         .site-configurator__content
             flex-direction: column
             grid-row-gap: 24px
 
 @media screen and (max-width: 768px)
     .site-configurator
-        .site-configurator__container
-            width: 292px
-
-        .site-configurator__title
-            font-size: 28px
-            line-height: 36px
-
         .site-configurator__content
             grid-gap: 12px
 

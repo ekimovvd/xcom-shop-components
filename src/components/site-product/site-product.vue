@@ -4,8 +4,8 @@
             <p class="site-product__tag-label">Скидка</p>
         </div>
         <div class="site-product__preview">
-            <Splide class="site-product__slider" :options="splideOptions">
-                <SplideSlide
+            <SiteSplide class="site-product__slider" :options="splideOptions">
+                <SiteSlide
                     class="site-product__slide"
                     v-for="slide in product.images"
                     :key="slide.id"
@@ -15,8 +15,8 @@
                         :src="require(`@/assets/images/product/${slide.name}`)"
                         alt="Acer"
                     />
-                </SplideSlide>
-            </Splide>
+                </SiteSlide>
+            </SiteSplide>
         </div>
         <div class="site-product__content">
             <div class="site-product__statistics">
@@ -91,15 +91,10 @@
 </template>
 
 <script>
-import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { toRefs } from "vue";
 
 export default {
     name: "site-product",
-    components: {
-        Splide,
-        SplideSlide,
-    },
     props: {
         product: {
             type: Object,

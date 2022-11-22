@@ -85,9 +85,8 @@ export default {
 
 <style lang="sass">
 .site-products
-    &__container
-        width: 1344px
-        margin: 0 auto
+    .site-products__container
+        @include container
 
     .site-products__header
         font-family: 'Manrope', sans-serif
@@ -148,9 +147,6 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-products
-        .site-products__container
-            width: 960px
-
         .site-products__title
             font-size: 32px
             line-height: 40px
@@ -161,16 +157,8 @@ export default {
         .site-products__list
             margin-top: 48px
 
-@media screen and (max-width: 1024px)
-    .site-products
-        .site-products__container
-            width: 632px
-
 @media screen and (max-width: 768px)
     .site-products
-        .site-products__container
-            width: 292px
-
         .site-products__title
             font-size: 28px
             line-height: 36px

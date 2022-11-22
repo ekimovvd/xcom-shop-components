@@ -2,6 +2,7 @@
     <SiteHeader />
     <SiteConfigurator />
     <SiteServices />
+    <SiteNews :news="news" />
     <SiteStay />
     <SiteFilter
         class="filter"
@@ -24,11 +25,10 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
-
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteConfigurator from "@/components/site-configurator/site-configurator.vue";
 import SiteServices from "@/components/site-services/site-services.vue";
+import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFilter from "@/components/site-filter/site-filter.vue";
 import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
@@ -41,6 +41,7 @@ export default {
         SiteHeader,
         SiteConfigurator,
         SiteServices,
+        SiteNews,
         SiteStay,
         SiteFilter,
         SiteFilterRange,
@@ -48,10 +49,64 @@ export default {
         SiteFooter,
     },
     setup() {
-        let rangeMinValue = ref(0);
-        let rangeMaxValue = ref(4500);
+        let rangeMinValue = 0;
+        let rangeMaxValue = 4500;
 
-        const products = computed(() => [
+        const news = [
+            {
+                id: 1,
+                tags: [
+                    {
+                        id: 1,
+                        name: "Видеокарты",
+                    },
+                    {
+                        id: 2,
+                        name: "X-pert советует",
+                    },
+                ],
+                date: "21.06.2022",
+                description:
+                    "Выбор видеокарты среднего класса для игрового ПК в 2022 году",
+                backgroundImage: "video-card.png",
+            },
+            {
+                id: 2,
+                tags: [
+                    {
+                        id: 1,
+                        name: "Huawei",
+                    },
+                    {
+                        id: 2,
+                        name: "Cмартфоны",
+                    },
+                ],
+                date: "21.06.2022",
+                description:
+                    "Xiaomi POCO X4 Pro 5G: новое поколение мегапопулярного смартфона",
+                backgroundImage: "phones.png",
+            },
+            {
+                id: 3,
+                tags: [
+                    {
+                        id: 1,
+                        name: "Logitech",
+                    },
+                    {
+                        id: 2,
+                        name: "X-pert советует",
+                    },
+                ],
+                date: "21.06.2022",
+                description:
+                    "Logitech POP Keys: беспроводная механическая клавиатура с настраиваемыми клавишами эмодзи",
+                backgroundImage: "keyboard.png",
+            },
+        ];
+
+        const products = [
             {
                 id: 1,
                 name: "Acer Aspire 3",
@@ -120,9 +175,9 @@ export default {
                     },
                 ],
             },
-        ]);
+        ];
 
-        const filters = computed(() => [
+        const filters = [
             {
                 id: 1,
                 name: "ASUS",
@@ -183,7 +238,7 @@ export default {
                 name: "Msi",
                 quantity: 50,
             },
-        ]);
+        ];
 
         const onToggleCheckbox = (value) => {
             console.log("Toggle checkbox", value);
@@ -204,6 +259,7 @@ export default {
         return {
             rangeMinValue,
             rangeMaxValue,
+            news,
             products,
             filters,
             onToggleCheckbox,

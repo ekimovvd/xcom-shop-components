@@ -116,6 +116,7 @@ export default {
     emits: ["toggleCheckbox", "toggleRadio"],
     created() {
         window.addEventListener("resize", this.onChangeResize);
+        this.onChangeResize();
     },
     setup(props, { emit }) {
         const widthSmallScreen = 768;

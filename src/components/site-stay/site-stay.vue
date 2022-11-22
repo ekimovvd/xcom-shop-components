@@ -152,8 +152,7 @@ export default {
 <style lang="sass">
 .site-stay
     .site-stay__container
-        width: 1344px
-        margin: 0 auto
+        @include container
         font-family: 'Manrope', sans-serif
 
     .site-stay__group
@@ -318,9 +317,6 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-stay
-        .site-stay__container
-            width: 960px
-
         .site-stay__group
             grid-column-gap: 29px
 
@@ -340,7 +336,11 @@ export default {
                 height: 100%
 
         .site-stay__about
-            height: 404px
+            margin-top: 64px
+            flex-direction: column
+            height: auto
+            padding: 32px 24px 41px 24px
+            grid-row-gap: 26px
 
         .site-stay__about-label
             font-weight: 400
@@ -349,9 +349,6 @@ export default {
 
 @media screen and (max-width: 1024px)
     .site-stay
-        .site-stay__container
-            width: 632px
-
         .site-stay__group
             grid-column-gap: 24px
 
@@ -390,13 +387,6 @@ export default {
             &.site-stay__mailing-img--small
                 display: none
 
-        .site-stay__about
-            margin-top: 64px
-            flex-direction: column
-            height: auto
-            padding: 32px 24px 41px 24px
-            grid-row-gap: 26px
-
         .site-stay__about-groups
             flex-direction: row-reverse
             grid-column-gap: 23px
@@ -414,9 +404,6 @@ export default {
 
 @media screen and (max-width: 768px)
     .site-stay
-        .site-stay__container
-            width: 292px
-
         .site-stay__group
             flex-direction: column
             grid-row-gap: 32px
