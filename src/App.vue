@@ -1,5 +1,6 @@
 <template>
     <SiteHeader />
+    <SiteExperts />
     <SiteConfigurator />
     <SiteServices />
     <SiteNews :news="news" />
@@ -26,6 +27,7 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteExperts from "@/components/site-experts/site-experts.vue";
 import SiteConfigurator from "@/components/site-configurator/site-configurator.vue";
 import SiteServices from "@/components/site-services/site-services.vue";
 import SiteNews from "@/components/site-news/site-news.vue";
@@ -39,6 +41,7 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteExperts,
         SiteConfigurator,
         SiteServices,
         SiteNews,

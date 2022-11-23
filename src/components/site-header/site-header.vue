@@ -665,6 +665,10 @@ export default {
             &.site-header__section--three
                 display: none
 
+        .site-header__footer
+            box-shadow: $small-down
+            border-radius: 0px 0px 24px 24px
+
 @media screen and (max-width: 1024px)
     .site-header
         padding: 12px 0
