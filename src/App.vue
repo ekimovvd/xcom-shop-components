@@ -22,7 +22,8 @@
         @changeMax="onChangeRangeMaxValue"
     />
     <SiteProducts :products="products" />
-    <SiteFooter class="footer" />
+    <SiteProductHorizontal :product="products[0]" />
+    <SiteFooter />
 </template>
 
 <script>
@@ -35,6 +36,7 @@ import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFilter from "@/components/site-filter/site-filter.vue";
 import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
 import SiteProducts from "@/components/site-products/site-products.vue";
+import SiteProductHorizontal from "@/components/site-product-horizontal/site-product-horizontal.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 
 export default {
@@ -49,6 +51,7 @@ export default {
         SiteFilter,
         SiteFilterRange,
         SiteProducts,
+        SiteProductHorizontal,
         SiteFooter,
     },
     setup() {
@@ -116,6 +119,38 @@ export default {
                 description:
                     "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
                 link: "#",
+                specifications: [
+                    {
+                        id: 1,
+                        name: "Операционная система",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 2,
+                        name: "Диагональ экрана",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 3,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 4,
+                        name: "Производитель процессора:",
+                        value: " Intel",
+                    },
+                    {
+                        id: 5,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 6,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
                 images: [
                     {
                         id: 1,
@@ -133,6 +168,38 @@ export default {
                 description:
                     "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
                 link: "#",
+                specifications: [
+                    {
+                        id: 1,
+                        name: "Операционная система",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 2,
+                        name: "Диагональ экрана",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 3,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 4,
+                        name: "Производитель процессора:",
+                        value: " Intel",
+                    },
+                    {
+                        id: 5,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 6,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
                 images: [
                     {
                         id: 1,
@@ -150,6 +217,38 @@ export default {
                 description:
                     "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
                 link: "#",
+                specifications: [
+                    {
+                        id: 1,
+                        name: "Операционная система",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 2,
+                        name: "Диагональ экрана",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 3,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 4,
+                        name: "Производитель процессора:",
+                        value: " Intel",
+                    },
+                    {
+                        id: 5,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 6,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
                 images: [
                     {
                         id: 1,
@@ -167,6 +266,38 @@ export default {
                 description:
                     "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
                 link: "#",
+                specifications: [
+                    {
+                        id: 1,
+                        name: "Операционная система",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 2,
+                        name: "Диагональ экрана",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 3,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 4,
+                        name: "Производитель процессора:",
+                        value: " Intel",
+                    },
+                    {
+                        id: 5,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 6,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
                 images: [
                     {
                         id: 1,
