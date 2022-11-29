@@ -1,5 +1,9 @@
 <template>
     <SiteHeader />
+    <div class="container">
+        <SiteContacts />
+        <SiteSupport />
+    </div>
     <SiteExperts />
     <SiteConfigurator />
     <SiteServices />
@@ -28,6 +32,8 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteContacts from "@/components/SiteContacts/SiteContacts.vue";
+import SiteSupport from "./components/SiteSupport/SiteSupport.vue";
 import SiteExperts from "@/components/site-experts/site-experts.vue";
 import SiteConfigurator from "@/components/site-configurator/site-configurator.vue";
 import SiteServices from "@/components/site-services/site-services.vue";
@@ -43,6 +49,8 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteContacts,
+        SiteSupport,
         SiteExperts,
         SiteConfigurator,
         SiteServices,
@@ -408,4 +416,8 @@ export default {
 <style lang="sass">
 .footer
     margin-top: 50px
+
+.container
+    @include container
+    margin: 100px auto
 </style>
