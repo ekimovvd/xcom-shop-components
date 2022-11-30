@@ -3,7 +3,7 @@
         <div class="site-experts__container">
             <div class="site-experts__content">
                 <div class="site-experts__info">
-                    <h1 class="site-experts__title">Эксперты X-com</h1>
+                    <h2 class="site-experts__title">Эксперты X-com</h2>
                     <p class="site-experts__label">
                         Мы всегда готовы помочь с выбором техники и предоставить
                         профессиональный сервис

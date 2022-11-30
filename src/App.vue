@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteOrders />
         <SiteContacts />
         <SiteSupport />
     </div>
@@ -32,6 +33,7 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
 import SiteContacts from "@/components/SiteContacts/SiteContacts.vue";
 import SiteSupport from "./components/SiteSupport/SiteSupport.vue";
 import SiteExperts from "@/components/site-experts/site-experts.vue";
@@ -49,6 +51,7 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteOrders,
         SiteContacts,
         SiteSupport,
         SiteExperts,
