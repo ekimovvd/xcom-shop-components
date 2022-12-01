@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteQuestions title="Оформление заказа" :questions="questions" />
         <SiteOrders />
         <SiteContacts />
         <SiteSupport />
@@ -33,6 +34,7 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteQuestions from "./components/SiteQuestions/SiteQuestions.vue";
 import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
 import SiteContacts from "@/components/SiteContacts/SiteContacts.vue";
 import SiteSupport from "./components/SiteSupport/SiteSupport.vue";
@@ -51,6 +53,7 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteQuestions,
         SiteOrders,
         SiteContacts,
         SiteSupport,
@@ -69,6 +72,35 @@ export default {
         let rangeMinValue = 0;
         let rangeMaxValue = 4500;
 
+        const questions = [
+            {
+                id: 0,
+                name: "Порядок оформления заказа",
+                description:
+                    "Как правильно и в каком порядке, оформить заказ на сайте",
+            },
+            {
+                id: 1,
+                name: "Способы оформления заказа",
+                description: "Какие есть виды и способы оформления заказа",
+            },
+            {
+                id: 2,
+                name: "Как сделать заказ на другое лицо",
+                description:
+                    "Как сделать заказ на другое лицо, если на свое не хочется",
+            },
+            {
+                id: 3,
+                name: "Как отменить заказ",
+                description: "Как и когда можно отменить заказ на сайте",
+            },
+            {
+                id: 4,
+                name: "Как выбрать менеджера",
+                description: "Как выбрать менеджера который нравится тебе",
+            },
+        ];
         const news = [
             {
                 id: 1,
@@ -402,6 +434,7 @@ export default {
         };
 
         return {
+            questions,
             rangeMinValue,
             rangeMaxValue,
             news,
