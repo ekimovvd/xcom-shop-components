@@ -59,15 +59,13 @@ export default {
     padding: 24px 32px
     background: $grays-gray-100
     border-radius: 24px
-    max-width: 489px
-    width: 100%
+    width: 489px
     font-family: 'Manrope', sans-serif
 
     .site-question__header
         display: flex
         align-items: center
         justify-content: space-between
-        margin-bottom: 16px
 
     .site-question__title
         font-weight: 500
@@ -87,6 +85,7 @@ export default {
 
     .site-question__info
         width: 270px
+        margin-top: 16px
 
     .site-question__label
         font-weight: 400
@@ -96,17 +95,19 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-question
-        max-width: 304px
+        width: 304px
         padding: 24px 16px
 
         .site-question__title
             font-size: 14px
             line-height: 18px
 
-@media screen and (max-width: 1440px)
+@media screen and (max-width: 1024px)
     .site-question
-        max-width: 100%
-
         .site-question__info
-            width: 272px
+            width: 100%
+
+@media screen and (max-width: 1024px)
+    .site-question
+        width: 100%
 </style>

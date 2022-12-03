@@ -9,6 +9,7 @@
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
     "core-js": "^3.6.5",
+    "decline-word": "^1.4.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {

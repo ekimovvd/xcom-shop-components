@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteProfileCards />
         <SiteQuestions title="Оформление заказа" :questions="questions" />
         <SiteOrders />
         <SiteContacts />
@@ -34,6 +35,7 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteProfileCards from "@/components/SiteProfileCards/SiteProfileCards.vue";
 import SiteQuestions from "./components/SiteQuestions/SiteQuestions.vue";
 import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
 import SiteContacts from "@/components/SiteContacts/SiteContacts.vue";
@@ -53,6 +55,7 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteProfileCards,
         SiteQuestions,
         SiteOrders,
         SiteContacts,
