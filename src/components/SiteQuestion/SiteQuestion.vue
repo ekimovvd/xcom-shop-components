@@ -107,7 +107,7 @@ export default {
         .site-question__info
             width: 100%
 
-@media screen and (max-width: 1024px)
+@media screen and (max-width: 768px)
     .site-question
         width: 100%
 </style>

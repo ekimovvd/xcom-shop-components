@@ -1,6 +1,19 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteBanner
+            :banner="{
+                title: 'Ноутбуки для работы',
+                link: '#',
+            }"
+        />
+        <SiteBanner
+            :banner="{
+                title: 'Ноутбуки для работы',
+                link: '#',
+            }"
+            :is-horizontal="true"
+        />
         <SiteProfileCards />
         <SiteQuestions title="Оформление заказа" :questions="questions" />
         <SiteOrders />
@@ -35,6 +48,7 @@
 
 <script>
 import SiteHeader from "@/components/site-header/site-header.vue";
+import SiteBanner from "@/components/SiteBanner/SiteBanner.vue";
 import SiteProfileCards from "@/components/SiteProfileCards/SiteProfileCards.vue";
 import SiteQuestions from "./components/SiteQuestions/SiteQuestions.vue";
 import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
@@ -55,6 +69,7 @@ export default {
     name: "App",
     components: {
         SiteHeader,
+        SiteBanner,
         SiteProfileCards,
         SiteQuestions,
         SiteOrders,
