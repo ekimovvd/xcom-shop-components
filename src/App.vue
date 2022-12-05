@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
         <SiteBanner
             :banner="{
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import SitePublications from "@/components/SitePublications/SitePublications.vue";
 import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteBanner from "@/components/SiteBanner/SiteBanner.vue";
@@ -70,6 +72,7 @@ import SiteFooter from "@/components/site-footer/site-footer.vue";
 export default {
     name: "App",
     components: {
+        SitePublications,
         SiteBanners,
         SiteHeader,
         SiteBanner,
@@ -93,6 +96,34 @@ export default {
         let rangeMinValue = 0;
         let rangeMaxValue = 4500;
 
+        const publications = [
+            {
+                id: 0,
+                type: "video",
+                img: "preview.png",
+                video: "3GNQL3alB-Y",
+            },
+            {
+                id: 1,
+                type: "image",
+                label: "Lenovo представила рабочую станцию ThinkStation P360 Ultra ",
+                img: "publication-1.png",
+                video: "",
+            },
+            {
+                id: 2,
+                type: "image",
+                label: "Lenovo представила рабочую станцию ThinkStation P360 Ultra ",
+                img: "publication-2.png",
+                video: "",
+            },
+            {
+                id: 3,
+                type: "video",
+                img: "preview.png",
+                video: "3GNQL3alB-Y",
+            },
+        ];
         const banners = [
             {
                 id: 0,
@@ -469,6 +500,7 @@ export default {
         };
 
         return {
+            publications,
             banners,
             questions,
             rangeMinValue,

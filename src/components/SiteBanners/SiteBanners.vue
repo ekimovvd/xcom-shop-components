@@ -27,6 +27,7 @@ export default {
         const options = {
             pagination: false,
             perPage: 1,
+            gap: "24px",
         };
 
         return {
@@ -38,11 +39,12 @@ export default {
 
 <style lang="sass">
 .site-banners
+    .site-banners__slide
+        border-radius: 24px
+
     .site-banners__slide-img
         width: 100%
         height: 484px
-        background-size: cover
-        background-repeat: no-repeat
         border-radius: 24px
 
     .splide__arrow
