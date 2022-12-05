@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteBanners :banners="banners" />
         <SiteBanner
             :banner="{
                 title: 'Ноутбуки для работы',
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteBanner from "@/components/SiteBanner/SiteBanner.vue";
 import SiteProfileCards from "@/components/SiteProfileCards/SiteProfileCards.vue";
@@ -68,6 +70,7 @@ import SiteFooter from "@/components/site-footer/site-footer.vue";
 export default {
     name: "App",
     components: {
+        SiteBanners,
         SiteHeader,
         SiteBanner,
         SiteProfileCards,
@@ -90,6 +93,20 @@ export default {
         let rangeMinValue = 0;
         let rangeMaxValue = 4500;
 
+        const banners = [
+            {
+                id: 0,
+                img: "banner-1.png",
+            },
+            {
+                id: 2,
+                img: "banner-2.png",
+            },
+            {
+                id: 3,
+                img: "banner-3.png",
+            },
+        ];
         const questions = [
             {
                 id: 0,
@@ -452,6 +469,7 @@ export default {
         };
 
         return {
+            banners,
             questions,
             rangeMinValue,
             rangeMaxValue,
