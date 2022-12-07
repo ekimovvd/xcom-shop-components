@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteProducts :products="products" />
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
         <SiteBanner
@@ -43,8 +44,6 @@
         @changeMin="onChangeRangeMinValue"
         @changeMax="onChangeRangeMaxValue"
     />
-    <SiteProducts :products="products" />
-    <SiteProductHorizontal :product="products[0]" />
     <SiteFooter />
 </template>
 
@@ -65,8 +64,7 @@ import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFilter from "@/components/site-filter/site-filter.vue";
 import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
-import SiteProducts from "@/components/site-products/site-products.vue";
-import SiteProductHorizontal from "@/components/site-product-horizontal/site-product-horizontal.vue";
+import SiteProducts from "@/components/SiteProducts/SiteProducts.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 
 export default {
@@ -89,12 +87,76 @@ export default {
         SiteFilter,
         SiteFilterRange,
         SiteProducts,
-        SiteProductHorizontal,
         SiteFooter,
     },
     setup() {
         let rangeMinValue = 0;
         let rangeMaxValue = 4500;
+
+        const products = [
+            {
+                id: 0,
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: "51 686",
+                priceCurrent: "43 925",
+            },
+        ];
 
         const publications = [
             {
@@ -221,205 +283,6 @@ export default {
             },
         ];
 
-        const products = [
-            {
-                id: 1,
-                name: "Acer Aspire 3",
-                description:
-                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
-                link: "#",
-                specifications: [
-                    {
-                        id: 1,
-                        name: "Операционная система",
-                        value: "Без ОС",
-                    },
-                    {
-                        id: 2,
-                        name: "Диагональ экрана",
-                        value: "15,6”",
-                    },
-                    {
-                        id: 3,
-                        name: "Разрешение экрана:",
-                        value: "1900х1080",
-                    },
-                    {
-                        id: 4,
-                        name: "Производитель процессора:",
-                        value: " Intel",
-                    },
-                    {
-                        id: 5,
-                        name: "Модель процессора:",
-                        value: "Core i3-1005G1",
-                    },
-                    {
-                        id: 6,
-                        name: "Тактовая частота:",
-                        value: "1.2 ГГц",
-                    },
-                ],
-                images: [
-                    {
-                        id: 1,
-                        name: "acer.png",
-                    },
-                    {
-                        id: 2,
-                        name: "acer.png",
-                    },
-                ],
-            },
-            {
-                id: 2,
-                name: "Macbook pro 14",
-                description:
-                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
-                link: "#",
-                specifications: [
-                    {
-                        id: 1,
-                        name: "Операционная система",
-                        value: "Без ОС",
-                    },
-                    {
-                        id: 2,
-                        name: "Диагональ экрана",
-                        value: "15,6”",
-                    },
-                    {
-                        id: 3,
-                        name: "Разрешение экрана:",
-                        value: "1900х1080",
-                    },
-                    {
-                        id: 4,
-                        name: "Производитель процессора:",
-                        value: " Intel",
-                    },
-                    {
-                        id: 5,
-                        name: "Модель процессора:",
-                        value: "Core i3-1005G1",
-                    },
-                    {
-                        id: 6,
-                        name: "Тактовая частота:",
-                        value: "1.2 ГГц",
-                    },
-                ],
-                images: [
-                    {
-                        id: 1,
-                        name: "acer.png",
-                    },
-                    {
-                        id: 2,
-                        name: "acer.png",
-                    },
-                ],
-            },
-            {
-                id: 3,
-                name: "Lenovo",
-                description:
-                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
-                link: "#",
-                specifications: [
-                    {
-                        id: 1,
-                        name: "Операционная система",
-                        value: "Без ОС",
-                    },
-                    {
-                        id: 2,
-                        name: "Диагональ экрана",
-                        value: "15,6”",
-                    },
-                    {
-                        id: 3,
-                        name: "Разрешение экрана:",
-                        value: "1900х1080",
-                    },
-                    {
-                        id: 4,
-                        name: "Производитель процессора:",
-                        value: " Intel",
-                    },
-                    {
-                        id: 5,
-                        name: "Модель процессора:",
-                        value: "Core i3-1005G1",
-                    },
-                    {
-                        id: 6,
-                        name: "Тактовая частота:",
-                        value: "1.2 ГГц",
-                    },
-                ],
-                images: [
-                    {
-                        id: 1,
-                        name: "acer.png",
-                    },
-                    {
-                        id: 2,
-                        name: "acer.png",
-                    },
-                ],
-            },
-            {
-                id: 4,
-                name: "Msi",
-                description:
-                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro ",
-                link: "#",
-                specifications: [
-                    {
-                        id: 1,
-                        name: "Операционная система",
-                        value: "Без ОС",
-                    },
-                    {
-                        id: 2,
-                        name: "Диагональ экрана",
-                        value: "15,6”",
-                    },
-                    {
-                        id: 3,
-                        name: "Разрешение экрана:",
-                        value: "1900х1080",
-                    },
-                    {
-                        id: 4,
-                        name: "Производитель процессора:",
-                        value: " Intel",
-                    },
-                    {
-                        id: 5,
-                        name: "Модель процессора:",
-                        value: "Core i3-1005G1",
-                    },
-                    {
-                        id: 6,
-                        name: "Тактовая частота:",
-                        value: "1.2 ГГц",
-                    },
-                ],
-                images: [
-                    {
-                        id: 1,
-                        name: "acer.png",
-                    },
-                    {
-                        id: 2,
-                        name: "acer.png",
-                    },
-                ],
-            },
-        ];
-
         const filters = [
             {
                 id: 1,
@@ -500,13 +363,13 @@ export default {
         };
 
         return {
+            products,
             publications,
             banners,
             questions,
             rangeMinValue,
             rangeMaxValue,
             news,
-            products,
             filters,
             onToggleCheckbox,
             onToggleRadio,

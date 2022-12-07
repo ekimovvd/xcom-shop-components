@@ -37,16 +37,26 @@
                     @toggleBasket="onToggleBasket"
                     @toggleQuantity="onToggleQuantity"
                 />
+                <SiteProduct
+                    v-for="product in products"
+                    :key="product.id"
+                    :product="product"
+                    :is-horizontal="true"
+                    @toggleCompare="onToggleCompare"
+                    @toggleFavorite="onToggleFavorite"
+                    @toggleBasket="onToggleBasket"
+                    @toggleQuantity="onToggleQuantity"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import SiteProduct from "@/components/site-product/site-product.vue";
+import SiteProduct from "@/components/SiteProduct/SiteProduct.vue";
 
 export default {
-    name: "site-products",
+    name: "SiteProducts",
     components: {
         SiteProduct,
     },
@@ -58,19 +68,19 @@ export default {
     },
     setup() {
         const onToggleCompare = (product) => {
-            console.log("Toggle Compare", product.value);
+            console.log("Toggle Compare", product);
         };
 
         const onToggleFavorite = (product) => {
-            console.log("Toggle Favorite", product.value);
+            console.log("Toggle Favorite", product);
         };
 
         const onToggleBasket = (product) => {
-            console.log("Toggle Basket", product.value);
+            console.log("Toggle Basket", product);
         };
 
-        const onToggleQuantity = () => {
-            console.log("Toggle quantity");
+        const onToggleQuantity = (product) => {
+            console.log("Toggle quantity", product);
         };
 
         return {
