@@ -16,14 +16,31 @@
                 v-for="publication in publications"
                 :key="publication.id"
                 :data-splide-youtube="publication.video"
+                :style="onSlideStyle(publication)"
             >
                 <img
-                    class="site-publications__slide-img"
+                    v-if="publication.video"
+                    class="site-publications__slide-preview"
                     :src="
-                        require(`@/assets/images/publications/${publication.img}`)
+                        require(`@/assets/images/publications/${publication.preview}`)
                     "
-                    alt="img"
+                    alt="preview"
                 />
+                <div v-else class="site-publications__slide-info">
+                    <p
+                        class="site-publications__slide-label"
+                        :style="onSlideLabelStyle(publication)"
+                    >
+                        {{ publication.label }}
+                    </p>
+                    <img
+                        class="site-publications__slide-img"
+                        :src="
+                            require(`@/assets/images/publications/${publication.img}`)
+                        "
+                        alt="img"
+                    />
+                </div>
             </SiteSlide>
         </SiteSplide>
     </div>
@@ -91,12 +108,26 @@ export default {
             screenWidth.value = window.innerWidth;
         };
 
+        const onSlideStyle = ({ backgroundColor }) => {
+            return {
+                backgroundColor: backgroundColor ? backgroundColor : "#69696D",
+            };
+        };
+
+        const onSlideLabelStyle = ({ labelColor }) => {
+            return {
+                color: labelColor ? labelColor : "#FFFFFF",
+            };
+        };
+
         return {
             isHidden,
             extensions: { Video },
             getOptions,
             onToggleIsHidden,
             onChangeResize,
+            onSlideStyle,
+            onSlideLabelStyle,
         };
     },
 };
@@ -109,8 +140,32 @@ export default {
     .site-publications__slider
         margin-top: 48px
 
-    .site-publications__slide-img
+    .site-publications__slide
         border-radius: 24px
+        position: relative
+        overflow: hidden
+
+    .site-publications__slide-preview
+        width: 100%
+        height: 100%
+        border-radius: 24px
+
+    .site-publications__slide-info
+        width: 100%
+        padding: 32px 32px 60px 32px
+
+    .site-publications__slide-label
+        font-family: 'Manrope', sans-serif
+        font-weight: 500
+        font-size: 20px
+        line-height: 26px
+        width: 264px
+        display: inline-block
+
+    .site-publications__slide-img
+        position: absolute
+        right: 0
+        bottom: 0
 
     .splide__arrow
         width: 44px
@@ -137,20 +192,40 @@ export default {
 
 @media screen and (max-width: 1440px)
     .site-publications
-        .site-publications__slide
-            width: 304px
+        .site-publications__slide-info
+            padding: 24px 86px 48px 24px
+
+        .site-publications__slide-label
+            width: 164px
+            font-size: 14px
+            line-height: 18px
 
         .site-publications__slide-img
-            width: 304px
-            border-radius: 16px
+            width: 142px
+            right: -15px
+            bottom: -15px
 
 @media screen and (max-width: 768px)
     .site-publications
         .site-publications__slide
-            width: 292px
+            height: 80px
+            border-radius: 16px
+
+        .site-publications__slide-preview
+            border-radius: 16px
+
+        .site-publications__slide-info
+            padding: 16px 64px 16px 16px
+
+        .site-publications__slide-label
+            font-size: 12px
+            line-height: 16px
+            width: 136px
 
         .site-publications__slide-img
-            width: 292px
+            width: 87px
+            right: 0
+            bottom: 0
 
         .splide__arrow
             width: 32px

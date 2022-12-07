@@ -99,19 +99,95 @@ export default {
         const sales = [
             {
                 id: 0,
-                img: "sale-banner-1.png",
+                type: "img",
+                img: {
+                    link: "img-1.png",
+                    position: "left",
+                },
+                tag: {
+                    label: "Специальные условия",
+                    labelColor: "#282A2D",
+                    backgroundColor: "#F6F8FD",
+                },
+                name: {
+                    label: "Принимаем бонусы СПАСИБО от Сбера",
+                    color: "#282A2D",
+                },
+                backgroundColor: "232.21deg, #46E2AE 0%, #AFE71F 100%",
+                isGradient: true,
             },
             {
                 id: 1,
-                img: "sale-banner-2.png",
+                type: "tile",
+                img: {
+                    link: "img-2.png",
+                    position: "center",
+                },
+                tag: {
+                    label: "Скидка",
+                    labelColor: "#157FF8",
+                    backgroundColor: "#FFFFFF",
+                },
+                name: {
+                    label: "Сплит-система Ballu",
+                    color: "#ffffff",
+                },
+                description: "BSEP-09HN1",
+                price: {
+                    value: "36 350 ₽",
+                    backgroundColor: "#157FF8",
+                    labelColor: "#FFFFFF",
+                },
+                priceOld: {
+                    value: "36 350 ₽",
+                    backgroundColor: "#FFFFFF",
+                    labelColor: "#B1B1BD",
+                },
+                backgroundColor: "52.21deg, #0DFFC5 0%, #3354FF 100%",
+                isGradient: true,
             },
             {
                 id: 2,
-                img: "sale-banner-3.png",
+                img: {
+                    link: "img-3.png",
+                    position: "left",
+                },
+                tag: {
+                    label: "Новинка",
+                    labelColor: "#157FF8",
+                    backgroundColor: "#FFFFFF",
+                },
+                name: {
+                    label: "Кабель интерфейсный HDMI Filum",
+                    color: "#ffffff",
+                },
+                description: "DS-2CD2123G2-IS(2.8MM)",
+                price: {
+                    value: "36 350 ₽",
+                    backgroundColor: "#FFFFFF",
+                    labelColor: "#282A2D",
+                },
+                backgroundColor: "#157FF8",
+                isGradient: false,
             },
             {
                 id: 3,
-                img: "sale-banner-4.png",
+                type: "img",
+                img: {
+                    link: "img-1.png",
+                    position: "left",
+                },
+                tag: {
+                    label: "Специальные условия",
+                    labelColor: "#282A2D",
+                    backgroundColor: "#F6F8FD",
+                },
+                name: {
+                    label: "Принимаем бонусы СПАСИБО от Сбера",
+                    color: "#282A2D",
+                },
+                backgroundColor: "232.21deg, #46E2AE 0%, #AFE71F 100%",
+                isGradient: true,
             },
         ];
         const products = [
@@ -183,28 +259,34 @@ export default {
             {
                 id: 0,
                 type: "video",
-                img: "preview.png",
+                preview: "preview.png",
                 video: "3GNQL3alB-Y",
             },
             {
                 id: 1,
                 type: "image",
                 label: "Lenovo представила рабочую станцию ThinkStation P360 Ultra ",
-                img: "publication-1.png",
+                img: "image.png",
                 video: "",
+                backgroundColor: "#FFCE68",
+                labelColor: "#1F1C34",
             },
             {
                 id: 2,
                 type: "image",
                 label: "Lenovo представила рабочую станцию ThinkStation P360 Ultra ",
-                img: "publication-2.png",
+                img: "image.png",
                 video: "",
+                backgroundColor: "#69696D",
+                labelColor: "#FFFFFF",
             },
             {
                 id: 3,
                 type: "video",
-                img: "preview.png",
+                preview: "preview.png",
                 video: "3GNQL3alB-Y",
+                backgroundColor: "#69696D",
+                labelColor: "#FFFFFF",
             },
         ];
         const banners = [

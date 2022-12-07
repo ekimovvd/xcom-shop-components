@@ -15,11 +15,7 @@
                 v-for="sale in sales"
                 :key="sale.id"
             >
-                <img
-                    class="site-sales__slide-img"
-                    :src="require(`@/assets/images/sales/${sale.img}`)"
-                    alt="img"
-                />
+                <SiteSaleTile :sale="sale" />
             </SiteSlide>
         </SiteSplide>
     </div>
@@ -29,11 +25,13 @@
 import { computed, ref } from "vue";
 
 import SiteToggle from "@/components/site-toggle/site-toggle.vue";
+import SiteSaleTile from "@/components/SiteSaleTile/SiteSaleTile.vue";
 
 export default {
     name: "SiteSales",
     components: {
         SiteToggle,
+        SiteSaleTile,
     },
     props: {
         sales: {
@@ -55,18 +53,12 @@ export default {
         };
         const sliderPages = {
             max: 4,
-            average: 3,
             medium: 2,
             min: 1,
         };
 
         const getPerPage = computed(() => {
             if (
-                screenWidth.value <= screen.main &&
-                screenWidth.value > screen.medium
-            ) {
-                return sliderPages.average;
-            } else if (
                 screenWidth.value <= screen.medium &&
                 screenWidth.value > screen.small
             ) {
@@ -108,15 +100,6 @@ export default {
 .site-sales
     .site-sales__slider
         margin-top: 48px
-
-    .site-sales__slide
-        max-width: 318px
-        border-radius: 16px
-
-    .site-sales__slide-img
-        max-width: 318px
-        width: 100%
-        border-radius: 16px
 
     .splide__arrow
         width: 44px
