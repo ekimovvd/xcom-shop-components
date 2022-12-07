@@ -1,27 +1,23 @@
 <template>
-    <div class="site-publications">
+    <div class="site-sales">
         <SiteToggle
-            title="Публикации"
+            title="Может быть интересно"
             :isHidden="isHidden"
             @toggle="onToggleIsHidden"
         />
         <SiteSplide
             v-if="!isHidden"
-            class="site-publications__slider"
+            class="site-sales__slider"
             :options="getOptions"
-            :extensions="extensions"
         >
             <SiteSlide
-                class="site-publications__slide"
-                v-for="publication in publications"
-                :key="publication.id"
-                :data-splide-youtube="publication.video"
+                class="site-sales__slide"
+                v-for="sale in sales"
+                :key="sale.id"
             >
                 <img
-                    class="site-publications__slide-img"
-                    :src="
-                        require(`@/assets/images/publications/${publication.img}`)
-                    "
+                    class="site-sales__slide-img"
+                    :src="require(`@/assets/images/sales/${sale.img}`)"
                     alt="img"
                 />
             </SiteSlide>
@@ -33,15 +29,14 @@
 import { computed, ref } from "vue";
 
 import SiteToggle from "@/components/site-toggle/site-toggle.vue";
-import { Video } from "@splidejs/splide-extension-video";
 
 export default {
-    name: "SitePublications",
+    name: "SiteSales",
     components: {
         SiteToggle,
     },
     props: {
-        publications: {
+        sales: {
             type: Array,
             default: () => [],
         },
@@ -54,17 +49,24 @@ export default {
         const isHidden = ref(false);
         const screenWidth = ref(0);
         const screen = {
+            main: 1440,
             medium: 1024,
             small: 768,
         };
         const sliderPages = {
-            max: 3,
+            max: 4,
+            average: 3,
             medium: 2,
             min: 1,
         };
 
         const getPerPage = computed(() => {
             if (
+                screenWidth.value <= screen.main &&
+                screenWidth.value > screen.medium
+            ) {
+                return sliderPages.average;
+            } else if (
                 screenWidth.value <= screen.medium &&
                 screenWidth.value > screen.small
             ) {
@@ -93,7 +95,7 @@ export default {
 
         return {
             isHidden,
-            extensions: { Video },
+            screenWidth,
             getOptions,
             onToggleIsHidden,
             onChangeResize,
@@ -103,14 +105,18 @@ export default {
 </script>
 
 <style lang="sass">
-.site-publications
-    margin-bottom: 100px
-
-    .site-publications__slider
+.site-sales
+    .site-sales__slider
         margin-top: 48px
 
-    .site-publications__slide-img
-        border-radius: 24px
+    .site-sales__slide
+        max-width: 318px
+        border-radius: 16px
+
+    .site-sales__slide-img
+        max-width: 318px
+        width: 100%
+        border-radius: 16px
 
     .splide__arrow
         width: 44px
@@ -118,16 +124,15 @@ export default {
         opacity: 1
         background: $main-white
         box-shadow: $small-down
-        top: 126px
+
+        &:focus-visible
+            outline: none
 
         &:disabled
             display: none
 
         &:hover:not(:disabled)
             opacity: 1
-
-        &:focus-visible
-            outline: none
 
     .splide__arrow--prev
         left: -25px
@@ -136,21 +141,14 @@ export default {
         right: -25px
 
 @media screen and (max-width: 1440px)
-    .site-publications
-        .site-publications__slide
-            width: 304px
-
-        .site-publications__slide-img
-            width: 304px
-            border-radius: 16px
+    .site-sales
+        .site-sales__slider
+            margin-top: 32px
 
 @media screen and (max-width: 768px)
-    .site-publications
-        .site-publications__slide
-            width: 292px
-
-        .site-publications__slide-img
-            width: 292px
+    .site-sales
+        .site-sales__slider
+            margin-top: 40px
 
         .splide__arrow
             width: 32px

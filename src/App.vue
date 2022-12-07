@@ -1,6 +1,7 @@
 <template>
     <SiteHeader />
     <div class="container">
+        <SiteSales :sales="sales" />
         <SiteProducts :products="products" />
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import SiteSales from "@/components/SiteSales/SiteSales.vue";
 import SitePublications from "@/components/SitePublications/SitePublications.vue";
 import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
 import SiteHeader from "@/components/site-header/site-header.vue";
@@ -70,6 +72,7 @@ import SiteFooter from "@/components/site-footer/site-footer.vue";
 export default {
     name: "App",
     components: {
+        SiteSales,
         SitePublications,
         SiteBanners,
         SiteHeader,
@@ -93,6 +96,24 @@ export default {
         let rangeMinValue = 0;
         let rangeMaxValue = 4500;
 
+        const sales = [
+            {
+                id: 0,
+                img: "sale-banner-1.png",
+            },
+            {
+                id: 1,
+                img: "sale-banner-2.png",
+            },
+            {
+                id: 2,
+                img: "sale-banner-3.png",
+            },
+            {
+                id: 3,
+                img: "sale-banner-4.png",
+            },
+        ];
         const products = [
             {
                 id: 0,
@@ -363,6 +384,7 @@ export default {
         };
 
         return {
+            sales,
             products,
             publications,
             banners,

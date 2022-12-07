@@ -44,7 +44,6 @@ export default {
 
     .site-banners__slide-img
         width: 100%
-        height: 484px
         border-radius: 24px
 
     .splide__arrow
@@ -53,6 +52,9 @@ export default {
         opacity: 1
         background: $main-white
         box-shadow: $small-down
+
+        &:focus-visible
+            outline: none
 
         &:disabled
             display: none
@@ -66,20 +68,10 @@ export default {
     .splide__arrow--next
         right: -25px
 
-@media screen and (max-width: 1440px)
-    .site-banners
-        .site-banners__slide-img
-            height: 404px
-
-@media screen and (max-width: 1024px)
-    .site-banners
-        .site-banners__slide-img
-            height: 310px
-
 @media screen and (max-width: 768px)
     .site-banners
         .site-banners__slide-img
-            height: 220px
+            border-radius: 16px
 
         .splide__arrow
             width: 32px

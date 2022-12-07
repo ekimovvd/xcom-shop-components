@@ -172,6 +172,9 @@ export default {
         &.splide__arrow--next
             right: -22px
 
+        &:focus-visible
+            outline: none
+
         &:disabled
             display: none
 

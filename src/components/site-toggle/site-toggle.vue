@@ -81,4 +81,16 @@ export default {
     .site-toggle__button-svg
         &.site-toggle__button-svg--hidden
             transform: rotate(-180deg)
+
+@media screen and (max-width: 1024px)
+    .site-toggle
+        .site-toggle__title
+            font-size: 32px
+            line-height: 40px
+
+@media screen and (max-width: 768px)
+    .site-toggle
+        .site-toggle__title
+            font-size: 28px
+            line-height: 36px
 </style>
