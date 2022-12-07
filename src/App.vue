@@ -1,8 +1,11 @@
 <template>
     <SiteHeader />
+    <div class="catalog">
+        <SiteFilters class="catalog__filters" :filters="filters" />
+        <SiteProducts :products="products" />
+    </div>
     <div class="container">
         <SiteSales :sales="sales" />
-        <SiteProducts :products="products" />
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
         <SiteBanner
@@ -29,26 +32,11 @@
     <SiteServices />
     <SiteNews :news="news" />
     <SiteStay />
-    <SiteFilter
-        class="filter"
-        id="1"
-        :list="filters"
-        @toggleCheckbox="onToggleCheckbox"
-        @toggleRadio="onToggleRadio"
-    />
-    <SiteFilterRange
-        class="filter"
-        :min="rangeMinValue"
-        :max="rangeMaxValue"
-        :minValue="0"
-        :maxValue="4500"
-        @changeMin="onChangeRangeMinValue"
-        @changeMax="onChangeRangeMaxValue"
-    />
     <SiteFooter />
 </template>
 
 <script>
+import SiteFilters from "@/components/SiteFilters/SiteFilters.vue";
 import SiteSales from "@/components/SiteSales/SiteSales.vue";
 import SitePublications from "@/components/SitePublications/SitePublications.vue";
 import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
@@ -64,14 +52,13 @@ import SiteConfigurator from "@/components/site-configurator/site-configurator.v
 import SiteServices from "@/components/site-services/site-services.vue";
 import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
-import SiteFilter from "@/components/site-filter/site-filter.vue";
-import SiteFilterRange from "./components/site-filter-range/site-filter-range.vue";
 import SiteProducts from "@/components/SiteProducts/SiteProducts.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 
 export default {
     name: "App",
     components: {
+        SiteFilters,
         SiteSales,
         SitePublications,
         SiteBanners,
@@ -87,14 +74,63 @@ export default {
         SiteServices,
         SiteNews,
         SiteStay,
-        SiteFilter,
-        SiteFilterRange,
         SiteProducts,
         SiteFooter,
     },
     setup() {
-        let rangeMinValue = 0;
-        let rangeMaxValue = 4500;
+        const filters = [
+            {
+                id: 0,
+                type: "checkbox",
+                title: "Бренд",
+                list: [
+                    {
+                        id: 1,
+                        name: "ASUS",
+                        quantity: 45,
+                    },
+                    {
+                        id: 2,
+                        name: "Acer",
+                        quantity: 15,
+                    },
+                    {
+                        id: 3,
+                        name: "Dell",
+                        quantity: 35,
+                    },
+                ],
+            },
+            {
+                id: 2,
+                type: "range",
+                title: "Цена",
+                min: 0,
+                max: 4500,
+            },
+            {
+                id: 2,
+                type: "radio",
+                title: "Бренд",
+                list: [
+                    {
+                        id: 1,
+                        name: "ASUS",
+                        quantity: 45,
+                    },
+                    {
+                        id: 2,
+                        name: "Acer",
+                        quantity: 15,
+                    },
+                    {
+                        id: 3,
+                        name: "Dell",
+                        quantity: 35,
+                    },
+                ],
+            },
+        ];
 
         const sales = [
             {
@@ -193,6 +229,7 @@ export default {
         const products = [
             {
                 id: 0,
+                type: "tile",
                 preview: "acer.png",
                 images: [
                     {
@@ -252,6 +289,201 @@ export default {
                 ],
                 priceOld: "51 686",
                 priceCurrent: "43 925",
+            },
+            {
+                id: 1,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: "51 686",
+                priceCurrent: "43 925",
+            },
+            {
+                id: 2,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: "51 686",
+                priceCurrent: "43 925",
+            },
+            {
+                id: 3,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: "51 686",
+                priceCurrent: "43 925",
+            },
+            {
+                id: 4,
+                type: "banner",
+                title: "Ноутбуки для работы",
+                link: "#",
             },
         ];
 
@@ -386,99 +618,14 @@ export default {
             },
         ];
 
-        const filters = [
-            {
-                id: 1,
-                name: "ASUS",
-                quantity: 45,
-            },
-            {
-                id: 2,
-                name: "Acer",
-                quantity: 15,
-            },
-            {
-                id: 3,
-                name: "Dell",
-                quantity: 35,
-            },
-            {
-                id: 4,
-                name: "Lenovo",
-                quantity: 50,
-            },
-            {
-                id: 5,
-                name: "Digma",
-                quantity: 50,
-            },
-            {
-                id: 6,
-                name: "Dream Machines",
-                quantity: 50,
-            },
-            {
-                id: 7,
-                name: "HP",
-                quantity: 50,
-            },
-            {
-                id: 8,
-                name: "Msi",
-                quantity: 50,
-            },
-            {
-                id: 9,
-                name: "Msi",
-                quantity: 50,
-            },
-            {
-                id: 10,
-                name: "Msi",
-                quantity: 50,
-            },
-            {
-                id: 11,
-                name: "Msi",
-                quantity: 50,
-            },
-            {
-                id: 12,
-                name: "Msi",
-                quantity: 50,
-            },
-        ];
-
-        const onToggleCheckbox = (value) => {
-            console.log("Toggle checkbox", value);
-        };
-
-        const onToggleRadio = (value) => {
-            console.log("Radio toggle", value);
-        };
-
-        const onChangeRangeMinValue = (value) => {
-            rangeMinValue.value = value;
-        };
-
-        const onChangeRangeMaxValue = (value) => {
-            rangeMaxValue.value = value;
-        };
-
         return {
-            sales,
+            filters,
             products,
+            sales,
             publications,
             banners,
             questions,
-            rangeMinValue,
-            rangeMaxValue,
             news,
-            filters,
-            onToggleCheckbox,
-            onToggleRadio,
-            onChangeRangeMinValue,
-            onChangeRangeMaxValue,
         };
     },
 };
@@ -491,4 +638,14 @@ export default {
 .container
     @include container
     margin: 100px auto
+
+.catalog
+    @include container
+    display: flex
+    align-items: flex-start
+    grid-column-gap: 24px
+
+.catalog__filters
+    @media screen and (max-width: 1024px)
+        display: none
 </style>
