@@ -4,23 +4,19 @@
         <SiteFilters class="catalog__filters" :filters="filters" />
         <SiteProducts :products="products" />
     </div>
+    <div class="addresses">
+        <SiteAddresses :addresses="addresses" />
+    </div>
+    <div class="counterparties">
+        <SiteCounterparties :counterparties="counterparties" />
+    </div>
+    <div class="appeals">
+        <SiteAppeals :appeals="appeals" />
+    </div>
     <div class="container">
         <SiteSales :sales="sales" />
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
-        <SiteBanner
-            :banner="{
-                title: 'Ноутбуки для работы',
-                link: '#',
-            }"
-        />
-        <SiteBanner
-            :banner="{
-                title: 'Ноутбуки для работы',
-                link: '#',
-            }"
-            :is-horizontal="true"
-        />
         <SiteProfileCards />
         <SiteQuestions title="Оформление заказа" :questions="questions" />
         <SiteOrders />
@@ -36,12 +32,15 @@
 </template>
 
 <script>
+import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteFilters from "@/components/SiteFilters/SiteFilters.vue";
+import SiteProducts from "@/components/SiteProducts/SiteProducts.vue";
+import SiteAddresses from "@/components/SiteAddresses/SiteAddresses.vue";
+import SiteCounterparties from "@/components/SiteCounterparties/SiteCounterparties.vue";
+import SiteAppeals from "@/components/SiteAppeals/SiteAppeals.vue";
 import SiteSales from "@/components/SiteSales/SiteSales.vue";
 import SitePublications from "@/components/SitePublications/SitePublications.vue";
 import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
-import SiteHeader from "@/components/site-header/site-header.vue";
-import SiteBanner from "@/components/SiteBanner/SiteBanner.vue";
 import SiteProfileCards from "@/components/SiteProfileCards/SiteProfileCards.vue";
 import SiteQuestions from "./components/SiteQuestions/SiteQuestions.vue";
 import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
@@ -52,18 +51,20 @@ import SiteConfigurator from "@/components/site-configurator/site-configurator.v
 import SiteServices from "@/components/site-services/site-services.vue";
 import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
-import SiteProducts from "@/components/SiteProducts/SiteProducts.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 
 export default {
     name: "App",
     components: {
+        SiteHeader,
         SiteFilters,
+        SiteProducts,
+        SiteAddresses,
+        SiteCounterparties,
+        SiteAppeals,
         SiteSales,
         SitePublications,
         SiteBanners,
-        SiteHeader,
-        SiteBanner,
         SiteProfileCards,
         SiteQuestions,
         SiteOrders,
@@ -74,7 +75,6 @@ export default {
         SiteServices,
         SiteNews,
         SiteStay,
-        SiteProducts,
         SiteFooter,
     },
     setup() {
@@ -418,6 +418,12 @@ export default {
             },
             {
                 id: 3,
+                type: "banner",
+                title: "Ноутбуки для работы",
+                link: "#",
+            },
+            {
+                id: 4,
                 type: "tile",
                 preview: "acer.png",
                 images: [
@@ -478,12 +484,6 @@ export default {
                 ],
                 priceOld: "51 686",
                 priceCurrent: "43 925",
-            },
-            {
-                id: 4,
-                type: "banner",
-                title: "Ноутбуки для работы",
-                link: "#",
             },
         ];
 
@@ -618,6 +618,67 @@ export default {
             },
         ];
 
+        const addresses = [
+            {
+                id: 0,
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+                body: "3",
+                entrance: "1",
+                floor: "7",
+                flat: "739",
+                comment: "Тестовый комментарий",
+            },
+            {
+                id: 1,
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+                body: "3",
+                entrance: "1",
+                floor: "7",
+                flat: "739",
+                comment: "Тестовый комментарий",
+            },
+            {
+                id: 2,
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+                body: "3",
+                entrance: "1",
+                floor: "7",
+                flat: "739",
+                comment: "Тестовый комментарий",
+                pvz: "ПВЗ Семеновский",
+            },
+        ];
+
+        const counterparties = [
+            {
+                id: 0,
+                name: "ООО Компания",
+                inn: "ИНН 7785426321",
+                checkpoint: "checkpoint",
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+            },
+            {
+                id: 1,
+                name: "ООО Компания",
+                inn: "ИНН 7785426321",
+                checkpoint: "checkpoint",
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+            },
+            {
+                id: 2,
+                name: "ООО Компания",
+                inn: "ИНН 7785426321",
+                checkpoint: "checkpoint",
+                address: "Москва, Ул Горького 123, Подъезд 3, этаж 5, кв. 445",
+            },
+        ];
+
+        const appeals = [
+            {
+                id: 0,
+            },
+        ];
+
         return {
             filters,
             products,
@@ -626,6 +687,9 @@ export default {
             banners,
             questions,
             news,
+            addresses,
+            counterparties,
+            appeals,
         };
     },
 };
@@ -648,4 +712,13 @@ export default {
 .catalog__filters
     @media screen and (max-width: 1024px)
         display: none
+
+.addresses
+    @include container
+
+.appeals
+    @include container
+
+.counterparties
+    @include container
 </style>

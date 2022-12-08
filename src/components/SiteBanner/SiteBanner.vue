@@ -57,7 +57,6 @@ export default {
     background-color: $old-gray
     border-radius: 12px
     width: 318px
-    height: 463px
     padding: 25px 13px 23px 25px
     display: flex
     flex-direction: column
@@ -66,7 +65,6 @@ export default {
 
     &.site-banner--horizontal
         width: 100%
-        height: 242px
         padding: 40px
         justify-content: flex-start
         grid-row-gap: 24px
@@ -102,11 +100,7 @@ export default {
 @media screen and (max-width: 1440px)
     .site-banner
         width: 222px
-        height: 400px
         padding: 24px 28px 0 24px
-
-        &.site-banner--horizontal
-            height: 204px
 
         .site-banner__title
             font-weight: 500
@@ -123,7 +117,6 @@ export default {
 @media screen and (max-width: 1024px)
     .site-banner
         width: 140px
-        height: 307px
 
         .site-banner__title
             font-size: 14px
