@@ -1,27 +1,7 @@
 <template>
     <div class="site-orders">
-        <div class="site-orders__header">
-            <div class="site-orders__header-group">
-                <h3 class="site-orders__title">Мои заказы</h3>
-                <p class="site-orders__label">7</p>
-            </div>
-            <div class="site-orders__tabs">
-                <button
-                    class="site-orders__tab site-orders__tab--active"
-                    :class="getTabActiveSelectedClass"
-                    @click="onTab('active')"
-                >
-                    Активные
-                </button>
-                <button
-                    class="site-orders__tab site-orders__tab--completed"
-                    :class="getTabCompletedSelectedClass"
-                    @click="onTab('completed')"
-                >
-                    Завершенные
-                </button>
-            </div>
-        </div>
+        <SiteOrdersHeader class="site-orders__header" :label="getHeaderLabel" />
+        <SiteOrdersEmpty />
         <div class="site-orders__list">
             <SiteOrder
                 v-for="order of orders"
@@ -33,18 +13,20 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
+import SiteOrdersHeader from "@/components/SiteOrdersHeader/SiteOrdersHeader.vue";
 import SiteOrder from "@/components/SiteOrder/SiteOrder.vue";
+import SiteOrdersEmpty from "@/components/SiteOrdersEmpty/SiteOrdersEmpty.vue";
 
 export default {
     name: "SiteOrders",
     components: {
+        SiteOrdersHeader,
         SiteOrder,
+        SiteOrdersEmpty,
     },
     setup() {
-        const tab = ref("active");
-
         const orders = {
             1240279: {
                 pk_order: "1240279",
@@ -338,24 +320,13 @@ export default {
             },
         };
 
-        const getTabActiveSelectedClass = computed(() => {
-            return tab.value === "active" ? "site-orders__tab--selected" : "";
+        const getHeaderLabel = computed(() => {
+            return Object.keys(orders).length;
         });
-        const getTabCompletedSelectedClass = computed(() => {
-            return tab.value === "completed"
-                ? "site-orders__tab--selected"
-                : "";
-        });
-
-        const onTab = (type) => {
-            tab.value = type;
-        };
 
         return {
             orders,
-            getTabActiveSelectedClass,
-            getTabCompletedSelectedClass,
-            onTab,
+            getHeaderLabel,
         };
     },
 };
@@ -363,97 +334,11 @@ export default {
 
 <style lang="sass">
 .site-orders
-    margin-bottom: 100px
-    font-family: 'Manrope', sans-serif
-
-    .site-orders__header
-        display: flex
-        align-items: center
+    .site-orders-header
         margin-bottom: 48px
 
-    .site-orders__header-group
-        display: flex
-        align-items: center
-        grid-column-gap: 12px
-
-    .site-orders__title
-        font-weight: 700
-        font-size: 32px
-        line-height: 40px
-        color: #070707
-
-    .site-orders__label
-        font-weight: 700
-        font-size: 32px
-        line-height: 40px
-        color: $grays-gray-300
-
-    .site-orders__tabs
-        margin-left: auto
-        display: grid
-        grid-template-columns: 98px 127px
-        align-items: center
-
-    .site-orders__tab
-        padding: 13px 16px
-        background: $main-white
-        border: 1px solid $grays-gray-200
-        outline: none
-        cursor: pointer
-        font-family: 'Manrope', sans-serif
-        font-weight: 500
-        font-size: 14px
-        line-height: 18px
-        color: $grays-gray-400
-
-    .site-orders__tab--active
-        border-radius: 8px 0 0 8px
-
-    .site-orders__tab--completed
-        border-radius: 0 8px 8px 0
-
-    .site-orders__tab--selected
-        background: $main-blue
-        border-color: $main-blue
-        color: $main-white
-
     .site-orders__list
-        display: grid
+        display: flex
+        flex-direction: column
         grid-row-gap: 24px
-
-@media screen and (max-width: 1440px)
-    .site-orders
-        .site-orders__header
-            margin-bottom: 49px
-
-@media screen and (max-width: 1024px)
-    .site-orders
-        .site-orders__header
-            margin-bottom: 24px
-
-        .site-orders__title
-            font-size: 28px
-            line-height: 36px
-
-        .site-orders__label
-            font-size: 28px
-            line-height: 36px
-
-@media screen and (max-width: 768px)
-    .site-orders
-        .site-orders__header
-            flex-direction: column
-            align-items: flex-start
-            grid-row-gap: 16px
-
-        .site-orders__title
-            font-size: 24px
-            line-height: 32px
-
-        .site-orders__label
-            font-size: 24px
-            line-height: 32px
-
-        .site-orders__tabs
-            margin-left: 0
 </style>

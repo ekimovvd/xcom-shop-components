@@ -19,6 +19,7 @@
         <SiteAppeals :appeals="appeals" />
     </div>
     <div class="container">
+        <SiteCoins />
         <SiteSales :sales="sales" />
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
@@ -60,6 +61,7 @@ import SiteServices from "@/components/site-services/site-services.vue";
 import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
+import SiteCoins from "@/components/SiteCoins/SiteCoins.vue";
 
 export default {
     name: "App",
@@ -87,6 +89,7 @@ export default {
         SiteNews,
         SiteStay,
         SiteFooter,
+        SiteCoins,
     },
     setup() {
         const filters = [
