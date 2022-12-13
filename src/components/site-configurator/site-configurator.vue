@@ -5,7 +5,7 @@
             :isHidden="isHidden"
             @toggle="onToggleIsHidden"
         />
-        <div class="site-configurator__container" v-if="!isHidden">
+        <div class="site-configurator__container" v-if="getContentIsShow">
             <div class="site-configurator__content">
                 <div class="site-configurator__group">
                     <ul class="site-configurator__cards">
@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import SiteToggle from "@/components/site-toggle/site-toggle.vue";
 
@@ -169,12 +169,17 @@ export default {
     setup() {
         const isHidden = ref(false);
 
+        const getContentIsShow = computed(() => {
+            return !isHidden.value;
+        });
+
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
         };
 
         return {
             isHidden,
+            getContentIsShow,
             onToggleIsHidden,
         };
     },

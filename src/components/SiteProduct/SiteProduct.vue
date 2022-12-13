@@ -2,8 +2,8 @@
     <div class="site-product" :class="getProductViewClass">
         <span class="site-product__tag">
             <img
-                v-if="isHorizontal"
                 class="site-product__tag-sale"
+                v-if="getPercentIsShow"
                 src="@/assets/images/product/sale.svg"
                 alt="sale"
             />
@@ -12,13 +12,13 @@
 
         <div class="site-product__preview" :class="getProductPreviewViewClass">
             <img
-                v-if="isHorizontal"
+                v-if="getPreviewIsShow"
                 class="site-product__preview-img"
-                :src="require(`@/assets/images/product/${product.preview}`)"
+                :src="getPreviewImg"
                 alt="preview"
             />
 
-            <div v-else class="site-product__slider">
+            <div class="site-product__slider" v-else>
                 <SiteSplide class="site-product__slider" :options="options">
                     <SiteSlide
                         class="site-product__slide"
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div v-if="!isHorizontal" class="site-product__model">
+                <div class="site-product__model" v-if="getModelIsShow">
                     <p class="site-product__model-label">
                         {{ product.model.id }}
                     </p>
@@ -80,11 +80,14 @@
                     </p>
                 </div>
 
-                <p v-if="!isHorizontal" class="site-product__description">
+                <p
+                    class="site-product__description"
+                    v-if="getDescriptionIsShow"
+                >
                     {{ product.description }}
                 </p>
 
-                <ul v-if="isHorizontal" class="site-product__list">
+                <ul class="site-product__list" v-if="getListIsShow">
                     <li
                         class="site-product__item"
                         v-for="item in product.list"
@@ -110,13 +113,13 @@
                         class="site-product__price-old"
                         :class="getProductPriceOldViewClass"
                     >
-                        {{ product.priceOld }} ₽
+                        {{ getPriceOld }} ₽
                     </p>
                     <p
                         class="site-product__price-current"
                         :class="getProductPriceCurrentViewClass"
                     >
-                        {{ product.priceCurrent }} ₽
+                        {{ getPriceCurrent }} ₽
                     </p>
                 </div>
                 <div
@@ -167,6 +170,8 @@
 
 <script>
 import { computed, toRefs } from "vue";
+
+import { onNumberWithSpaces } from "@/utils/functions.js";
 
 export default {
     name: "SiteProduct",
@@ -258,6 +263,38 @@ export default {
                 : "";
         });
 
+        const getPriceOld = computed(() => {
+            return onNumberWithSpaces(product.value.priceOld);
+        });
+
+        const getPriceCurrent = computed(() => {
+            return onNumberWithSpaces(product.value.priceCurrent);
+        });
+
+        const getPercentIsShow = computed(() => {
+            return isHorizontal.value;
+        });
+
+        const getPreviewIsShow = computed(() => {
+            return isHorizontal.value;
+        });
+
+        const getPreviewImg = computed(() => {
+            return require(`@/assets/images/product/${product.value.preview}`);
+        });
+
+        const getModelIsShow = computed(() => {
+            return !isHorizontal.value;
+        });
+
+        const getDescriptionIsShow = computed(() => {
+            return !isHorizontal.value;
+        });
+
+        const getListIsShow = computed(() => {
+            return isHorizontal.value;
+        });
+
         const onToggleCompare = () => {
             emit("toggleCompare", product.value);
         };
@@ -289,6 +326,14 @@ export default {
             getProductFeedbackViewClass,
             getProductButtonViewClass,
             getProductButtonIconViewClass,
+            getPriceOld,
+            getPriceCurrent,
+            getPercentIsShow,
+            getPreviewIsShow,
+            getPreviewImg,
+            getModelIsShow,
+            getDescriptionIsShow,
+            getListIsShow,
             onToggleCompare,
             onToggleFavorite,
             onToggleBasket,

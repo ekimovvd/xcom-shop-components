@@ -8,23 +8,23 @@
         </h4>
         <p class="site-sale-tile__description">{{ sale.description }}</p>
         <span
-            v-if="sale.priceOld"
             class="site-sale-tile__price-old"
+            v-if="getPriceOldIsShow"
             :style="getPriceOldStyle"
         >
-            {{ sale.priceOld.value }}
+            {{ getPriceOld }}
         </span>
         <span
-            v-if="sale.price"
             class="site-sale-tile__price-current"
+            v-if="getPriceIsShow"
             :style="getPriceStyle"
         >
-            {{ sale.price.value }}
+            {{ getPrice }}
         </span>
         <img
             class="site-sale-tile__img"
             :class="getImgViewClass"
-            :src="require(`@/assets/images/sales/${sale.img.link}`)"
+            :src="getImg"
             alt=""
         />
     </div>
@@ -32,6 +32,8 @@
 
 <script>
 import { computed, toRefs } from "vue";
+
+import { onNumberWithSpaces } from "@/utils/functions.js";
 
 export default {
     name: "SiteSaleTile",
@@ -99,6 +101,26 @@ export default {
             };
         });
 
+        const getPriceOldIsShow = computed(() => {
+            return priceOld;
+        });
+
+        const getPriceIsShow = computed(() => {
+            return price;
+        });
+
+        const getPriceOld = computed(() => {
+            return onNumberWithSpaces(priceOld.value);
+        });
+
+        const getPrice = computed(() => {
+            return onNumberWithSpaces(price.value);
+        });
+
+        const getImg = computed(() => {
+            return require(`@/assets/images/sales/${img.link}`);
+        });
+
         return {
             getTileStyle,
             getTagStyle,
@@ -106,6 +128,11 @@ export default {
             getImgViewClass,
             getPriceStyle,
             getPriceOldStyle,
+            getPriceOldIsShow,
+            getPriceIsShow,
+            getPriceOld,
+            getPrice,
+            getImg,
         };
     },
 };

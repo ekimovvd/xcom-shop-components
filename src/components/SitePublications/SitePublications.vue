@@ -6,8 +6,8 @@
             @toggle="onToggleIsHidden"
         />
         <SiteSplide
-            v-if="!isHidden"
             class="site-publications__slider"
+            v-if="getContentIsShow"
             :options="getOptions"
             :extensions="extensions"
         >
@@ -19,14 +19,14 @@
                 :style="onSlideStyle(publication)"
             >
                 <img
-                    v-if="publication.video"
                     class="site-publications__slide-preview"
+                    v-if="publication.video"
                     :src="
                         require(`@/assets/images/publications/${publication.preview}`)
                     "
                     alt="preview"
                 />
-                <div v-else class="site-publications__slide-info">
+                <div class="site-publications__slide-info" v-else>
                     <p
                         class="site-publications__slide-label"
                         :style="onSlideLabelStyle(publication)"
@@ -100,6 +100,10 @@ export default {
             };
         });
 
+        const getContentIsShow = computed(() => {
+            return !isHidden.value;
+        });
+
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
         };
@@ -124,6 +128,7 @@ export default {
             isHidden,
             extensions: { Video },
             getOptions,
+            getContentIsShow,
             onToggleIsHidden,
             onChangeResize,
             onSlideStyle,

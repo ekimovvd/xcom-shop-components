@@ -118,7 +118,7 @@
         <div class="site-order__show-all" v-if="getIsVisibleShowAll">
             <button class="site-order__show-all-btn" @click="onShowAll">
                 Еще {{ getCountMoreItems }}
-                {{ onDeclineItems(getCountMoreItems) }}
+                {{ getDeclineItems }}
                 <img
                     class="site-order__show-all-svg"
                     src="@/assets/images/order/chevron-down.svg"
@@ -131,7 +131,8 @@
 
 <script>
 import { computed, ref, toRefs } from "vue";
-import { declineWrapper } from "decline-word";
+
+import { onDecline } from "@/utils/functions.js";
 
 export default {
     name: "SiteOrder",
@@ -235,7 +236,9 @@ export default {
             return countItems.default;
         });
 
-        const onDeclineItems = declineWrapper("товар", "", "а", "ов");
+        const getDeclineItems = computed(() => {
+            return onDecline(["товар", "", "а", "ов"])(getCountMoreItems.value);
+        });
 
         const onShowAll = () => {
             isShowAll.value = true;
@@ -249,9 +252,9 @@ export default {
             getIsVisibleShowAll,
             getItems,
             getCountMoreItems,
+            getDeclineItems,
             onShowAll,
             onChangeResize,
-            onDeclineItems,
         };
     },
 };

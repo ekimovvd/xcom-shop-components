@@ -13,7 +13,7 @@
                 />
             </button>
         </div>
-        <div class="site-question__info" v-if="toggle">
+        <div class="site-question__info" v-if="getContentIsShow">
             <p class="site-question__label">
                 {{ question.description }}
             </p>
@@ -41,6 +41,10 @@ export default {
                 : "";
         });
 
+        const getContentIsShow = computed(() => {
+            return toggle.value;
+        });
+
         const onToggle = () => {
             toggle.value = !toggle.value;
         };
@@ -48,6 +52,7 @@ export default {
         return {
             toggle,
             getToggleChevronHiddenClass,
+            getContentIsShow,
             onToggle,
         };
     },

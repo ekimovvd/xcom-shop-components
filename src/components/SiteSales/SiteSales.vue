@@ -6,7 +6,7 @@
             @toggle="onToggleIsHidden"
         />
         <SiteSplide
-            v-if="!isHidden"
+            v-if="getContentIsShow"
             class="site-sales__slider"
             :options="getOptions"
         >
@@ -77,6 +77,10 @@ export default {
             };
         });
 
+        const getContentIsShow = computed(() => {
+            return !isHidden.value;
+        });
+
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
         };
@@ -89,6 +93,7 @@ export default {
             isHidden,
             screenWidth,
             getOptions,
+            getContentIsShow,
             onToggleIsHidden,
             onChangeResize,
         };

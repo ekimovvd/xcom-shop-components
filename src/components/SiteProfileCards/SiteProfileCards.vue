@@ -10,7 +10,7 @@
         />
         <SiteProfileStatus
             class="site-profile-cards__status"
-            :status="status"
+            :profile="profile"
         />
     </div>
 </template>
@@ -30,17 +30,19 @@ export default {
     setup() {
         const profile = {
             name: "Александр Константинов ",
-            bonuses: 10257,
+            coins: 10257,
+            status: {
+                amount: 300000,
+                name: "Профессионал",
+            },
+            nextStatus: {
+                amount: 500000,
+                name: "Эксперт",
+            },
         };
 
         const delivery = {
             date: "16 августа",
-        };
-
-        const status = {
-            currentAmount: 30000,
-            finalAmount: 500000,
-            status: "Эксперт",
         };
 
         return {

@@ -8,10 +8,12 @@
         <div class="site-profile-card__user">
             <p class="site-profile-card__user-name">{{ profile.name }}</p>
             <div class="site-profile-card__user-group">
-                <p class="site-profile-card__user-label">Профессионал:</p>
+                <p class="site-profile-card__user-label">
+                    {{ profile.status.name }}:
+                </p>
                 <span class="site-profile-card__user-statistics">
-                    {{ profile.bonuses }}
-                    {{ onDeclineBonuses(profile.bonuses) }}
+                    {{ getCoins }}
+                    {{ getDeclineCoins }}
                 </span>
             </div>
         </div>
@@ -20,7 +22,9 @@
 </template>
 
 <script>
-import { declineWrapper } from "decline-word";
+import { computed, toRefs } from "vue";
+
+import { onNumberWithSpaces, onDecline } from "@/utils/functions.js";
 
 export default {
     name: "SiteProfileCard",
@@ -30,11 +34,20 @@ export default {
             required: true,
         },
     },
-    setup() {
-        const onDeclineBonuses = declineWrapper("бонус", "", "а", "ов");
+    setup(props) {
+        const { profile } = toRefs(props);
+
+        const getCoins = computed(() => {
+            return onNumberWithSpaces(profile.value.coins);
+        });
+
+        const getDeclineCoins = computed(() => {
+            return onDecline(["бонус", "", "а", "ов"])(profile.value.coins);
+        });
 
         return {
-            onDeclineBonuses,
+            getCoins,
+            getDeclineCoins,
         };
     },
 };

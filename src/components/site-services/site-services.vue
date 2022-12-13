@@ -5,7 +5,7 @@
             :isHidden="isHidden"
             @toggle="onToggleIsHidden"
         />
-        <div class="site-services__content" v-if="!isHidden">
+        <div class="site-services__content" v-if="getContentIsShow">
             <div class="site-services__container">
                 <div class="site-services__section">
                     <div class="site-services__banner">
@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import SiteToggle from "@/components/site-toggle/site-toggle.vue";
 
@@ -140,12 +140,17 @@ export default {
     setup() {
         const isHidden = ref(false);
 
+        const getContentIsShow = computed(() => {
+            return !isHidden.value;
+        });
+
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
         };
 
         return {
             isHidden,
+            getContentIsShow,
             onToggleIsHidden,
         };
     },

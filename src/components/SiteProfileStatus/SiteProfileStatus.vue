@@ -1,48 +1,46 @@
 <template>
     <div class="site-profile-status">
         <div class="site-profile-status__progress">
-            <svg viewBox="0 0 168 168">
+            <svg width="84" height="84">
                 <circle
                     class="site-profile-status__progress-circle"
                     ref="circle"
-                    stroke-width="16"
-                    cx="84"
-                    cy="84"
-                    r="76"
+                    stroke-width="10"
+                    cx="42"
+                    cy="42"
+                    r="37"
                     fill="transparent"
                 ></circle>
             </svg>
-            <p class="site-profile-status__progress-label">
-                {{ status.finalAmount }} ₽
-            </p>
+            <p class="site-profile-status__progress-label">{{ getAmount }} ₽</p>
         </div>
         <div class="site-profile-status__info">
             <p class="site-profile-status__title">
                 Следующий статус:
-                <span class="site-profile-status__status">{{
-                    status.status
-                }}</span>
+                <span class="site-profile-status__status">
+                    {{ profile.nextStatus.name }}
+                </span>
             </p>
-            <p class="site-profile-status__label">
-                {{ status.currentAmount }} ₽
-            </p>
+            <p class="site-profile-status__label">{{ getFinalAmount }} ₽</p>
         </div>
     </div>
 </template>
 
 <script>
-import { ref, toRefs, onMounted } from "vue";
+import { ref, toRefs, onMounted, computed } from "vue";
+
+import { onNumberWithSpaces } from "@/utils/functions.js";
 
 export default {
     name: "site-profile-status",
     props: {
-        status: {
+        profile: {
             type: Object,
             required: true,
         },
     },
-    setup(props, { $refs }) {
-        const { status } = toRefs(props);
+    setup(props) {
+        const { profile } = toRefs(props);
         const circle = ref(null);
 
         onMounted(() => {
@@ -53,13 +51,25 @@ export default {
             circle.value.style.strokeDashoffset = circumference;
 
             const percent =
-                (status.value.currentAmount / status.value.finalAmount) * 100;
+                (profile.value.status.amount /
+                    profile.value.nextStatus.amount) *
+                100;
             const offset = circumference - (percent / 100) * circumference;
             circle.value.style.strokeDashoffset = offset;
         });
 
+        const getAmount = computed(() => {
+            return onNumberWithSpaces(profile.value.status.amount);
+        });
+
+        const getFinalAmount = computed(() => {
+            return onNumberWithSpaces(profile.value.nextStatus.amount);
+        });
+
         return {
             circle,
+            getAmount,
+            getFinalAmount,
         };
     },
 };

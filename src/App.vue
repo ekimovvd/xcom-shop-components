@@ -4,6 +4,11 @@
         <SiteFilters class="catalog__filters" :filters="filters" />
         <SiteProducts :products="products" />
     </div>
+    <div class="user">
+        <SiteUserCard :user="user" />
+        <SiteUserStatus :user="user" />
+        <SiteUserAdvantages :user="user" />
+    </div>
     <div class="addresses">
         <SiteAddresses :addresses="addresses" />
     </div>
@@ -35,6 +40,9 @@
 import SiteHeader from "@/components/site-header/site-header.vue";
 import SiteFilters from "@/components/SiteFilters/SiteFilters.vue";
 import SiteProducts from "@/components/SiteProducts/SiteProducts.vue";
+import SiteUserCard from "@/components/SiteUserCard/SiteUserCard.vue";
+import SiteUserAdvantages from "@/components/SiteUserAdvantages/SiteUserAdvantages.vue";
+import SiteUserStatus from "@/components/SiteUserStatus/SiteUserStatus.vue";
 import SiteAddresses from "@/components/SiteAddresses/SiteAddresses.vue";
 import SiteCounterparties from "@/components/SiteCounterparties/SiteCounterparties.vue";
 import SiteAppeals from "@/components/SiteAppeals/SiteAppeals.vue";
@@ -59,6 +67,9 @@ export default {
         SiteHeader,
         SiteFilters,
         SiteProducts,
+        SiteUserCard,
+        SiteUserAdvantages,
+        SiteUserStatus,
         SiteAddresses,
         SiteCounterparties,
         SiteAppeals,
@@ -170,12 +181,12 @@ export default {
                 },
                 description: "BSEP-09HN1",
                 price: {
-                    value: "36 350 ₽",
+                    value: 36350,
                     backgroundColor: "#157FF8",
                     labelColor: "#FFFFFF",
                 },
                 priceOld: {
-                    value: "36 350 ₽",
+                    value: 36350,
                     backgroundColor: "#FFFFFF",
                     labelColor: "#B1B1BD",
                 },
@@ -199,7 +210,7 @@ export default {
                 },
                 description: "DS-2CD2123G2-IS(2.8MM)",
                 price: {
-                    value: "36 350 ₽",
+                    value: 36350,
                     backgroundColor: "#FFFFFF",
                     labelColor: "#282A2D",
                 },
@@ -287,8 +298,8 @@ export default {
                         value: "1.2 ГГц",
                     },
                 ],
-                priceOld: "51 686",
-                priceCurrent: "43 925",
+                priceOld: 51686,
+                priceCurrent: 43925,
             },
             {
                 id: 1,
@@ -350,8 +361,8 @@ export default {
                         value: "1.2 ГГц",
                     },
                 ],
-                priceOld: "51 686",
-                priceCurrent: "43 925",
+                priceOld: 51686,
+                priceCurrent: 43925,
             },
             {
                 id: 2,
@@ -413,8 +424,8 @@ export default {
                         value: "1.2 ГГц",
                     },
                 ],
-                priceOld: "51 686",
-                priceCurrent: "43 925",
+                priceOld: 51686,
+                priceCurrent: 43925,
             },
             {
                 id: 3,
@@ -482,8 +493,8 @@ export default {
                         value: "1.2 ГГц",
                     },
                 ],
-                priceOld: "51 686",
-                priceCurrent: "43 925",
+                priceOld: 51686,
+                priceCurrent: 43925,
             },
         ];
 
@@ -675,9 +686,148 @@ export default {
 
         const appeals = [
             {
-                id: 0,
+                id: 1,
+                type: "Ремонт",
+                reason: "Следы использования",
+                description: "Хочу вернуть данную технику",
+                date: "28.03.2021",
+                tag: "consideration",
+                buyer: {
+                    name: "Контакты покупателя: Александров Иван, ООО “Компания”",
+                },
+                product: {
+                    name: "Ноутбук Acer EX215-32-C4FB Extensa",
+                    article: "879334",
+                    description:
+                        "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                },
+                images: [
+                    {
+                        id: 0,
+                        img: "product.png",
+                    },
+                    {
+                        id: 1,
+                        img: "product.png",
+                    },
+                ],
+                amount: 39940,
+                notification:
+                    "Продавец рассмотрит заявку и примет решение по возврату до 25 марта включительно. Точка, куда нужно будет принести товары будет указана на странице заявки после подтверждения возврата продавцом.",
+                shop: {
+                    address:
+                        "143442, Московская обл, Красногорский р-н, Пятницкое ш автодорога, 7-й км тер, дом № 2",
+                    schedule: "Пн - Пт: 9:00 - 20:00 Вс - Сб: 10:00 - 18:00",
+                },
+            },
+            {
+                id: 2,
+                type: "Ремонт",
+                reason: "Следы использования",
+                description: "Хочу вернуть данную технику",
+                date: "28.03.2021",
+                tag: "refund",
+                buyer: {
+                    name: "Контакты покупателя: Александров Иван, ООО “Компания”",
+                },
+                product: {
+                    name: "Ноутбук Acer EX215-32-C4FB Extensa",
+                    article: "879334",
+                    description:
+                        "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                },
+                images: [
+                    {
+                        id: 0,
+                        img: "product.png",
+                    },
+                    {
+                        id: 1,
+                        img: "product.png",
+                    },
+                ],
+                amount: 39940,
+                notification:
+                    "Продавец рассмотрит заявку и примет решение по возврату до 25 марта включительно. Точка, куда нужно будет принести товары будет указана на странице заявки после подтверждения возврата продавцом.",
+            },
+            {
+                id: 3,
+                type: "Ремонт",
+                reason: "Следы использования",
+                description: "Хочу вернуть данную технику",
+                date: "28.03.2021",
+                tag: "refundCanceled",
+                buyer: {
+                    name: "Контакты покупателя: Александров Иван, ООО “Компания”",
+                },
+                tile: {
+                    name: "Шины Nokian Hakkapeliitta 9 SUV 265/60 R18 114T XL",
+                    quantity: 1,
+                },
+                images: [
+                    {
+                        id: 0,
+                        img: "product.png",
+                    },
+                    {
+                        id: 1,
+                        img: "product.png",
+                    },
+                ],
+                amount: 39940,
+                notification: "Товары не были возвращены продавцу",
+                shop: {
+                    address:
+                        "143442, Московская обл, Красногорский р-н, Пятницкое ш автодорога, 7-й км тер, дом № 2",
+                    schedule: "Пн - Пт: 9:00 - 20:00 Вс - Сб: 10:00 - 18:00",
+                },
+            },
+            {
+                id: 4,
+                type: "Ремонт",
+                reason: "Следы использования",
+                description: "Хочу вернуть данную технику",
+                date: "28.03.2021",
+                tag: "returned",
+                buyer: {
+                    name: "Контакты покупателя: Александров Иван, ООО “Компания”",
+                },
+                product: {
+                    name: "Ноутбук Acer EX215-32-C4FB Extensa",
+                    article: "879334",
+                    description:
+                        "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                },
+                images: [
+                    {
+                        id: 0,
+                        img: "product.png",
+                    },
+                    {
+                        id: 1,
+                        img: "product.png",
+                    },
+                ],
+                amount: 39940,
+                notification:
+                    "Продавец рассмотрит заявку и примет решение по возврату до 25 марта включительно. Точка, куда нужно будет принести товары будет указана на странице заявки после подтверждения возврата продавцом.",
             },
         ];
+
+        const user = {
+            name: "Николай Иванов",
+            coins: 10000,
+            phone: "+7 (903) 221 86 17",
+            email: "ivanov@gmail.com",
+            status: {
+                name: "Профессионал",
+                amount: 100500,
+            },
+            nextStatus: {
+                name: "Эксперт",
+                amount: 511000,
+            },
+        };
 
         return {
             filters,
@@ -690,6 +840,7 @@ export default {
             addresses,
             counterparties,
             appeals,
+            user,
         };
     },
 };
@@ -712,6 +863,12 @@ export default {
 .catalog__filters
     @media screen and (max-width: 1024px)
         display: none
+
+.user
+    @include container
+    display: flex
+    flex-wrap: wrap
+    grid-gap: 24px
 
 .addresses
     @include container

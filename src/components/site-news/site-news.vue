@@ -5,7 +5,7 @@
             :isHidden="isHidden"
             @toggle="onToggleIsHidden"
         />
-        <div class="site-news__container" v-if="!isHidden">
+        <div class="site-news__container" v-if="!getContentIsShow">
             <SiteSplide class="site-news__slider" :options="getOptions">
                 <SiteSlide
                     class="site-news__slide"
@@ -102,6 +102,10 @@ export default {
             };
         });
 
+        const getContentIsShow = computed(() => {
+            return isHidden.value;
+        });
+
         const onToggleIsHidden = () => {
             isHidden.value = !isHidden.value;
         };
@@ -113,6 +117,7 @@ export default {
         return {
             isHidden,
             getOptions,
+            getContentIsShow,
             onToggleIsHidden,
             onChangeResize,
         };
