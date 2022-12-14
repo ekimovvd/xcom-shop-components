@@ -20,6 +20,8 @@
         <SiteSpecialists />
     </div>
     <div class="container">
+        <SitePaymentSuccess :order="paymentSuccess" />
+        <SitePaymentError :order="paymentError" />
         <SiteNotifications />
         <SiteCoins />
         <SiteSales :sales="sales" />
@@ -68,6 +70,8 @@ import SiteCoins from "@/components/SiteCoins/SiteCoins.vue";
 import SiteSpecialists from "@/components/SiteSpecialists/SiteSpecialists.vue";
 import SiteFeedbackSuccess from "@/components/SiteFeedbackSuccess/SiteFeedbackSuccess.vue";
 import SiteNotifications from "@/components/SiteNotifications/SiteNotifications.vue";
+import SitePaymentSuccess from "@/components/SitePaymentSuccess/SitePaymentSuccess.vue";
+import SitePaymentError from "@/components/SitePaymentError/SitePaymentError.vue";
 
 export default {
     name: "App",
@@ -99,6 +103,8 @@ export default {
         SiteSpecialists,
         SiteFeedbackSuccess,
         SiteNotifications,
+        SitePaymentSuccess,
+        SitePaymentError,
     },
     setup() {
         const filters = [
@@ -841,6 +847,17 @@ export default {
             },
         };
 
+        const paymentSuccess = {
+            id: 48758754753,
+            client: "Александров Александр, 89032218617",
+            address: "Москва, ул. Народного Ополчения, д.53, кв. 70",
+        };
+
+        const paymentError = {
+            id: 48758754753,
+            description: "Не удалось оплатить заказ",
+        };
+
         return {
             filters,
             products,
@@ -853,6 +870,8 @@ export default {
             counterparties,
             appeals,
             user,
+            paymentSuccess,
+            paymentError,
         };
     },
 };
