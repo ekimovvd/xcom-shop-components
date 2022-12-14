@@ -3,6 +3,11 @@
         <SiteOrdersHeader class="site-orders__header" :label="getHeaderLabel" />
         <SiteOrdersEmpty />
         <div class="site-orders__list">
+            <SiteOrderArchive
+                v-for="order in archive"
+                :key="order.pk_order"
+                :order="order"
+            />
             <SiteOrder
                 v-for="order of orders"
                 :key="order.order_id"
@@ -16,6 +21,7 @@
 import { computed } from "vue";
 
 import SiteOrdersHeader from "@/components/SiteOrdersHeader/SiteOrdersHeader.vue";
+import SiteOrderArchive from "@/components/SiteOrderArchive/SiteOrderArchive.vue";
 import SiteOrder from "@/components/SiteOrder/SiteOrder.vue";
 import SiteOrdersEmpty from "@/components/SiteOrdersEmpty/SiteOrdersEmpty.vue";
 
@@ -23,10 +29,26 @@ export default {
     name: "SiteOrders",
     components: {
         SiteOrdersHeader,
+        SiteOrderArchive,
         SiteOrder,
         SiteOrdersEmpty,
     },
     setup() {
+        const archive = {
+            1: {
+                pk_order: "1240279",
+                tag: "В пути",
+                amount: 3453403,
+                items: {},
+            },
+            2: {
+                pk_order: "1240280",
+                tag: "В пути",
+                amount: 4500000,
+                items: {},
+            },
+        };
+
         const orders = {
             1240279: {
                 pk_order: "1240279",
@@ -325,6 +347,7 @@ export default {
         });
 
         return {
+            archive,
             orders,
             getHeaderLabel,
         };

@@ -29,7 +29,7 @@
 <script>
 import { ref, toRefs, onMounted, computed } from "vue";
 
-import { onNumberWithSpaces } from "@/utils/functions.js";
+import { onNumberWithSpaces, onNumberFormat } from "@/utils/functions.js";
 
 export default {
     name: "site-profile-status",
@@ -59,7 +59,7 @@ export default {
         });
 
         const getAmount = computed(() => {
-            return onNumberWithSpaces(profile.value.status.amount);
+            return onNumberFormat(profile.value.status.amount);
         });
 
         const getFinalAmount = computed(() => {

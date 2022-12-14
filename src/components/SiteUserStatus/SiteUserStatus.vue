@@ -60,6 +60,8 @@
 <script>
 import { computed, onMounted, ref, toRefs } from "vue";
 
+import { onNumberFormat } from "@/utils/functions.js";
+
 export default {
     name: "SiteUserStatus",
     props: {
@@ -72,6 +74,8 @@ export default {
         const { user } = toRefs(props);
 
         const circle = ref(null);
+
+        // console.log(onNumberFormat(4000000));
 
         onMounted(() => {
             const radius = circle.value.r.baseVal.value;
@@ -88,9 +92,12 @@ export default {
         });
 
         const getRemainingAmount = computed(() => {
-            return onNumberWithSpaces(
+            return onNumberFormat(
                 user.value.nextStatus.amount - user.value.status.amount
             );
+            // return onNumberWithSpaces(
+            //     user.value.nextStatus.amount - user.value.status.amount
+            // );
         });
 
         const getStatusAmount = computed(() => {
@@ -157,7 +164,7 @@ export default {
 
     .site-user-status__progress-amount
         font-weight: 700
-        font-size: 16px
+        font-size: 13px
         line-height: 20px
         color: $main-black
 
