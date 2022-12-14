@@ -29,6 +29,7 @@
         <SiteOrders />
         <SiteContacts />
         <SiteSupport />
+        <SiteFeedbackSuccess />
     </div>
     <SiteExperts />
     <SiteConfigurator />
@@ -64,6 +65,7 @@ import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 import SiteCoins from "@/components/SiteCoins/SiteCoins.vue";
 import SiteSpecialists from "@/components/SiteSpecialists/SiteSpecialists.vue";
+import SiteFeedbackSuccess from "@/components/SiteFeedbackSuccess/SiteFeedbackSuccess.vue";
 
 export default {
     name: "App",
@@ -93,6 +95,7 @@ export default {
         SiteFooter,
         SiteCoins,
         SiteSpecialists,
+        SiteFeedbackSuccess,
     },
     setup() {
         const filters = [
