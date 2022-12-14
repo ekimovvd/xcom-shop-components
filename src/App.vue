@@ -17,6 +17,7 @@
     </div>
     <div class="appeals">
         <SiteAppeals :appeals="appeals" />
+        <SiteSpecialists />
     </div>
     <div class="container">
         <SiteCoins />
@@ -62,6 +63,7 @@ import SiteNews from "@/components/site-news/site-news.vue";
 import SiteStay from "@/components/site-stay/site-stay.vue";
 import SiteFooter from "@/components/site-footer/site-footer.vue";
 import SiteCoins from "@/components/SiteCoins/SiteCoins.vue";
+import SiteSpecialists from "@/components/SiteSpecialists/SiteSpecialists.vue";
 
 export default {
     name: "App",
@@ -90,6 +92,7 @@ export default {
         SiteStay,
         SiteFooter,
         SiteCoins,
+        SiteSpecialists,
     },
     setup() {
         const filters = [
