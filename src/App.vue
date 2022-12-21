@@ -20,6 +20,7 @@
         <SiteSpecialists />
     </div>
     <div class="container">
+        <SiteTile :tile="tile" />
         <SitePaymentSuccess :order="paymentSuccess" />
         <SitePaymentError :order="paymentError" />
         <SiteNotifications />
@@ -74,6 +75,7 @@ import SiteNotifications from "@/components/SiteNotifications/SiteNotifications.
 import SitePaymentSuccess from "@/components/SitePaymentSuccess/SitePaymentSuccess.vue";
 import SitePaymentError from "@/components/SitePaymentError/SitePaymentError.vue";
 import SiteReviews from "@/components/SiteReviews/SiteReviews.vue";
+import SiteTile from "@/components/SiteTile/SiteTile.vue";
 
 export default {
     name: "App",
@@ -108,6 +110,7 @@ export default {
         SitePaymentSuccess,
         SitePaymentError,
         SiteReviews,
+        SiteTile,
     },
     setup() {
         const filters = [
@@ -975,6 +978,27 @@ export default {
             },
         ];
 
+        const tile = {
+            name: "Ноутбук Acer EX215-32-C4FB Extensa",
+            description:
+                "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+            rating: 3.7,
+            code: 879334,
+            reviews: [
+                {
+                    id: 0,
+                    comment: "Test comment",
+                },
+            ],
+            price: 111628,
+            priceOld: 115240,
+            coins: 1117,
+            warranty: "12 месяцев",
+            pickpoint: "сегодня",
+            delivery: "завтра",
+            pickup: "03.10.2022",
+        };
+
         return {
             filters,
             products,
@@ -990,6 +1014,7 @@ export default {
             paymentSuccess,
             paymentError,
             reviews,
+            tile,
         };
     },
 };
