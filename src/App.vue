@@ -979,17 +979,11 @@ export default {
         ];
 
         const tile = {
-            name: "Ноутбук Acer EX215-32-C4FB Extensa",
+            name: "Право на использование (электронно) Dr.Web Desktop Security Suite Комплексная Защита, ЦУ, 75 ПК, продление 1 год для мед.учрежд.",
             description:
                 "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
             rating: 3.7,
             code: 879334,
-            reviews: [
-                {
-                    id: 0,
-                    comment: "Test comment",
-                },
-            ],
             price: 111628,
             priceOld: 115240,
             coins: 1117,
@@ -997,6 +991,95 @@ export default {
             pickpoint: "сегодня",
             delivery: "завтра",
             pickup: "03.10.2022",
+            available: true,
+            reviews: [
+                {
+                    id: 0,
+                    comment: "Test comment",
+                },
+            ],
+            previews: [
+                {
+                    id: 0,
+                    type: "3d",
+                },
+                {
+                    id: 1,
+                    type: "video",
+                },
+                {
+                    id: 2,
+                    type: "img",
+                    img: require("@/assets/images/tile-img/preview-1.png"),
+                },
+                {
+                    id: 3,
+                    type: "img",
+                    img: require("@/assets/images/tile-img/preview-2.png"),
+                },
+                {
+                    id: 4,
+                    type: "img",
+                    img: require("@/assets/images/tile-img/preview-1.png"),
+                },
+                {
+                    id: 5,
+                    type: "img",
+                    img: require("@/assets/images/tile-img/preview-2.png"),
+                },
+            ],
+            tags: [
+                {
+                    id: 0,
+                    label: "NEW",
+                    style: "yellow",
+                },
+                {
+                    id: 1,
+                    label: "-20%",
+                    style: "red",
+                },
+                {
+                    id: 2,
+                    label: "Скидка 🔥",
+                    style: "blue",
+                },
+                {
+                    id: 3,
+                    label: "NEW",
+                    style: "green",
+                },
+                {
+                    id: 4,
+                    label: "Cashback",
+                    style: "yellow",
+                },
+                {
+                    id: 5,
+                    label: "NEW",
+                    style: "yellow",
+                },
+                {
+                    id: 6,
+                    label: "-20%",
+                    style: "red",
+                },
+                {
+                    id: 7,
+                    label: "Скидка 🔥",
+                    style: "blue",
+                },
+                {
+                    id: 8,
+                    label: "NEW",
+                    style: "green",
+                },
+                {
+                    id: 9,
+                    label: "Cashback",
+                    style: "yellow",
+                },
+            ],
         };
 
         return {

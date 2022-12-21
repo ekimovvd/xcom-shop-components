@@ -6,7 +6,12 @@
         />
         <div class="site-tile__product">
             <div class="site-tile__preview">
-                <div>preview</div>
+                <SiteTilePreview :tile="tile" @zoom="onZoom" />
+                <SiteTileGallery
+                    class="site-tile__gallery"
+                    v-if="getGalleryIsShow"
+                    :tile="tile"
+                />
                 <SiteTileSpecifications class="site-tile__specifications" />
                 <SiteTileConfiguration />
                 <SiteTileInfo
@@ -24,7 +29,11 @@
 </template>
 
 <script>
+import { computed, toRefs } from "vue";
+
 import SiteTileInfo from "@/components/SiteTileInfo/SiteTileInfo.vue";
+import SiteTilePreview from "@/components/SiteTilePreview/SiteTilePreview.vue";
+import SiteTileGallery from "@/components/SiteTileGallery/SiteTileGallery.vue";
 import SiteTileBasket from "@/components/SiteTileBasket/SiteTileBasket.vue";
 import SiteTileSpecifications from "@/components/SiteTileSpecifications/SiteTileSpecifications.vue";
 import SiteTileConfiguration from "@/components/SiteTileConfiguration/SiteTileConfiguration.vue";
@@ -35,6 +44,8 @@ export default {
     name: "SiteTile",
     components: {
         SiteTileInfo,
+        SiteTilePreview,
+        SiteTileGallery,
         SiteTileBasket,
         SiteTileSpecifications,
         SiteTileConfiguration,
@@ -42,8 +53,26 @@ export default {
         SiteTileBanner,
     },
     props: {
-        tile: Object,
-        required: true,
+        tile: {
+            type: Object,
+            required: true,
+        },
+    },
+    setup(props) {
+        const { tile } = toRefs(props);
+
+        const getGalleryIsShow = computed(() => {
+            return tile.value.previews.length;
+        });
+
+        const onZoom = () => {
+            console.log("On Zoom");
+        };
+
+        return {
+            getGalleryIsShow,
+            onZoom,
+        };
     },
 };
 </script>
@@ -57,6 +86,9 @@ export default {
 
     .site-tile__info--bottom
         display: none
+
+    .site-tile__gallery
+        margin-top: 32px
 
     .site-tile__product
         display: grid
@@ -73,6 +105,9 @@ export default {
     .site-tile
         .site-tile__info
             margin-bottom: 32px
+
+        .site-tile__gallery
+            margin-top: 24px
 
         .site-tile__product
             grid-template-columns: 304px 386px
@@ -91,6 +126,9 @@ export default {
         .site-tile__info--bottom
             display: block
             margin: 32px 0 0 0
+
+        .site-tile__gallery
+            margin-top: 80px
 
         .site-tile__preview
             margin-bottom: 33px
@@ -115,4 +153,7 @@ export default {
 
         .site-tile__help
             margin: 24px 0 32px 0
+
+        .site-tile__gallery
+            margin-top: 50px
 </style>

@@ -47,7 +47,16 @@
             </p>
         </div>
 
-        <div class="site-tile-basket__buttons">
+        <div class="site-tile-basket__available" v-if="getAvailableIsShow">
+            <p class="site-tile-basket__available-label">Нет в наличии</p>
+            <button
+                class="site-tile-basket__button site-tile-basket__button--outline"
+            >
+                Сообщить о поступлении
+            </button>
+        </div>
+
+        <div class="site-tile-basket__buttons" v-if="getButtonsIsShow">
             <button class="site-tile-basket__button" @click="onCart">
                 Добавить в корзину
             </button>
@@ -172,6 +181,14 @@ export default {
             return onDecline(["бонус", "", "а", "ов"])(getCoins.value);
         });
 
+        const getAvailableIsShow = computed(() => {
+            return !tile.value.available;
+        });
+
+        const getButtonsIsShow = computed(() => {
+            return tile.value.available;
+        });
+
         const onCart = () => {
             console.log("On Cart");
         };
@@ -192,6 +209,8 @@ export default {
             getCoins,
             getCoinsIsShow,
             getCoinsDecline,
+            getAvailableIsShow,
+            getButtonsIsShow,
             onCart,
             onPay,
             onLocation,
@@ -279,6 +298,16 @@ export default {
         font-size: 14px
         line-height: 18px
         color: $secondary-blue-200
+
+    .site-tile-basket__available
+        margin-top: 8px
+
+    .site-tile-basket__available-label
+        font-weight: 500
+        font-size: 20px
+        line-height: 26px
+        color: $main-black
+        margin-bottom: 40px
 
     .site-tile-basket__buttons
         display: flex
@@ -403,6 +432,9 @@ export default {
         .site-tile-basket__prices
             grid-column-gap: 4px
 
+        .site-tile-basket__available
+            margin-top: 20px
+
         .site-tile-basket__buttons
             flex-direction: column
             grid-row-gap: 12px
@@ -417,6 +449,13 @@ export default {
             flex-direction: column-reverse
             align-items: flex-start
             grid-row-gap: 4px
+
+        .site-tile-basket__available
+            margin-top: 40px
+
+        .site-tile-basket__available-label
+            font-size: 18px
+            line-height: 24px
 
         .site-tile-basket__pickup-group
             flex-direction: row
