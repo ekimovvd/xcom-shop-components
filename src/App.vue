@@ -21,6 +21,9 @@
     </div>
     <div class="container">
         <SiteTile :tile="tile" />
+        <SiteReviews :reviews="reviews" />
+        <SiteQuestions :questions="questions" />
+        <SiteMaterials :materials="materials" />
         <SitePaymentSuccess :order="paymentSuccess" />
         <SitePaymentError :order="paymentError" />
         <SiteNotifications />
@@ -29,12 +32,14 @@
         <SitePublications :publications="publications" />
         <SiteBanners :banners="banners" />
         <SiteProfileCards />
-        <SiteQuestions title="Оформление заказа" :questions="questions" />
+        <SiteFrequentQuestions
+            title="Оформление заказа"
+            :questions="frequentQuestions"
+        />
         <SiteOrders />
         <SiteContacts />
         <SiteSupport />
         <SiteFeedbackSuccess />
-        <SiteReviews :reviews="reviews" />
     </div>
     <SiteExperts />
     <SiteConfigurator />
@@ -58,7 +63,7 @@ import SiteSales from "@/components/SiteSales/SiteSales.vue";
 import SitePublications from "@/components/SitePublications/SitePublications.vue";
 import SiteBanners from "@/components/SiteBanners/SiteBanners.vue";
 import SiteProfileCards from "@/components/SiteProfileCards/SiteProfileCards.vue";
-import SiteQuestions from "./components/SiteQuestions/SiteQuestions.vue";
+import SiteFrequentQuestions from "./components/SiteFrequentQuestions/SiteFrequentQuestions.vue";
 import SiteOrders from "./components/SiteOrders/SiteOrders.vue";
 import SiteContacts from "@/components/SiteContacts/SiteContacts.vue";
 import SiteSupport from "./components/SiteSupport/SiteSupport.vue";
@@ -76,6 +81,8 @@ import SitePaymentSuccess from "@/components/SitePaymentSuccess/SitePaymentSucce
 import SitePaymentError from "@/components/SitePaymentError/SitePaymentError.vue";
 import SiteReviews from "@/components/SiteReviews/SiteReviews.vue";
 import SiteTile from "@/components/SiteTile/SiteTile.vue";
+import SiteQuestions from "@/components/SiteQuestions/SiteQuestions.vue";
+import SiteMaterials from "@/components/SiteMaterials/SiteMaterials.vue";
 
 export default {
     name: "App",
@@ -93,7 +100,7 @@ export default {
         SitePublications,
         SiteBanners,
         SiteProfileCards,
-        SiteQuestions,
+        SiteFrequentQuestions,
         SiteOrders,
         SiteContacts,
         SiteSupport,
@@ -111,6 +118,8 @@ export default {
         SitePaymentError,
         SiteReviews,
         SiteTile,
+        SiteQuestions,
+        SiteMaterials,
     },
     setup() {
         const filters = [
@@ -570,7 +579,7 @@ export default {
                 img: "banner-3.png",
             },
         ];
-        const questions = [
+        const frequentQuestions = [
             {
                 id: 0,
                 name: "Порядок оформления заказа",
@@ -1082,13 +1091,43 @@ export default {
             ],
         };
 
+        const questions = [
+            {
+                id: 0,
+                name: "Александр",
+                date: "08 июня 2021 г.",
+                label: "Ноут разборный? Возможно увеличить оперативку и ssd?",
+            },
+            {
+                id: 1,
+                name: "Эксперт Xcom",
+                date: "08 июня 2021 г.",
+                label: "Разборный,ssd можно заменить на больший по объёму",
+            },
+        ];
+
+        const materials = [
+            {
+                id: 0,
+                name: "Инструкция для Acer Aspire 3A315-36",
+                size: "4.4 Мб",
+                link: "#",
+            },
+            {
+                id: 1,
+                name: "Сертификат: персональные данные",
+                size: "",
+                link: "#",
+            },
+        ];
+
         return {
             filters,
             products,
             sales,
             publications,
             banners,
-            questions,
+            frequentQuestions,
             news,
             addresses,
             counterparties,
@@ -1098,6 +1137,8 @@ export default {
             paymentError,
             reviews,
             tile,
+            questions,
+            materials,
         };
     },
 };

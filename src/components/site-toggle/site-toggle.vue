@@ -73,6 +73,7 @@ export default {
         cursor: pointer
         width: 32px
         height: 32px
+        min-width: 32px
         border-radius: 50%
         display: flex
         align-items: center

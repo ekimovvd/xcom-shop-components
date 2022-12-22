@@ -1,29 +1,14 @@
 <template>
     <div class="site-question">
-        <div class="site-question__header">
-            <h6 class="site-question__title">
-                {{ question.name }}
-            </h6>
-            <button class="site-question__toggle" @click="onToggle">
-                <img
-                    class="site-question__toggle-chevron"
-                    :class="getToggleChevronHiddenClass"
-                    src="@/assets/images/question/chevron.svg"
-                    alt="chevron"
-                />
-            </button>
-        </div>
-        <div class="site-question__info" v-if="getContentIsShow">
-            <p class="site-question__label">
-                {{ question.description }}
-            </p>
-        </div>
+        <h5 class="site-question__title">{{ question.name }}</h5>
+        <p class="site-question__date">{{ question.date }}</p>
+        <p class="site-question__label">
+            {{ question.label }}
+        </p>
     </div>
 </template>
 
 <script>
-import { computed, ref } from "vue";
-
 export default {
     name: "SiteQuestion",
     props: {
@@ -32,87 +17,30 @@ export default {
             required: true,
         },
     },
-    setup() {
-        const toggle = ref(true);
-
-        const getToggleChevronHiddenClass = computed(() => {
-            return !toggle.value
-                ? "site-questions__toggle-chevron--hidden"
-                : "";
-        });
-
-        const getContentIsShow = computed(() => {
-            return toggle.value;
-        });
-
-        const onToggle = () => {
-            toggle.value = !toggle.value;
-        };
-
-        return {
-            toggle,
-            getToggleChevronHiddenClass,
-            getContentIsShow,
-            onToggle,
-        };
-    },
 };
 </script>
 
 <style lang="sass">
 .site-question
-    padding: 24px 32px
-    background: $grays-gray-100
-    border-radius: 24px
-    width: 489px
     font-family: 'Manrope', sans-serif
 
-    .site-question__header
-        display: flex
-        align-items: center
-        justify-content: space-between
-
     .site-question__title
-        font-weight: 500
+        font-weight: 700
         font-size: 16px
         line-height: 20px
         color: $main-black
 
-    .site-question__toggle
-        background: none
-        border: none
-        outline: none
-        padding: 0
-        cursor: pointer
-
-    .site-questions__toggle-chevron--hidden
-        transform: rotate(-180deg)
-
-    .site-question__info
-        width: 270px
-        margin-top: 16px
+    .site-question__date
+        font-weight: 400
+        font-size: 10px
+        line-height: 14px
+        color: $grays-gray-400
+        margin-top: 8px
 
     .site-question__label
         font-weight: 400
-        font-size: 12px
-        line-height: 16px
+        font-size: 16px
+        line-height: 22px
         color: $main-black
-
-@media screen and (max-width: 1440px)
-    .site-question
-        width: 304px
-        padding: 24px 16px
-
-        .site-question__title
-            font-size: 14px
-            line-height: 18px
-
-@media screen and (max-width: 1024px)
-    .site-question
-        .site-question__info
-            width: 100%
-
-@media screen and (max-width: 768px)
-    .site-question
-        width: 100%
+        margin-top: 16px
 </style>
