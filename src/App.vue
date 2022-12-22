@@ -21,6 +21,7 @@
     </div>
     <div class="container">
         <SiteTile :tile="tile" />
+        <SiteTileServices :services="tileServices" />
         <SiteReviews :reviews="reviews" />
         <SiteQuestions :questions="questions" />
         <SiteMaterials :materials="materials" />
@@ -83,6 +84,7 @@ import SiteReviews from "@/components/SiteReviews/SiteReviews.vue";
 import SiteTile from "@/components/SiteTile/SiteTile.vue";
 import SiteQuestions from "@/components/SiteQuestions/SiteQuestions.vue";
 import SiteMaterials from "@/components/SiteMaterials/SiteMaterials.vue";
+import SiteTileServices from "@/components/SiteTileServices/SiteTileServices.vue";
 
 export default {
     name: "App",
@@ -120,6 +122,7 @@ export default {
         SiteTile,
         SiteQuestions,
         SiteMaterials,
+        SiteTileServices,
     },
     setup() {
         const filters = [
@@ -1121,6 +1124,59 @@ export default {
             },
         ];
 
+        const tileServices = [
+            {
+                id: 0,
+                name: "Продление гарантии",
+                amount: 4600,
+                variants: [
+                    {
+                        id: 0,
+                        label: "+1 год",
+                    },
+                    {
+                        id: 1,
+                        label: "+2 года",
+                    },
+                    {
+                        id: 2,
+                        label: "+3 года",
+                    },
+                ],
+            },
+            {
+                id: 0,
+                name: "Продление страховки",
+                amount: 6600,
+                variants: [
+                    {
+                        id: 0,
+                        label: "+1 год",
+                    },
+                    {
+                        id: 1,
+                        label: "+2 года",
+                    },
+                    {
+                        id: 2,
+                        label: "+3 года",
+                    },
+                ],
+            },
+            {
+                id: 0,
+                name: "Установка ПО",
+                amount: 4600,
+                variants: [],
+            },
+            {
+                id: 0,
+                name: "Страховой полис",
+                amount: 4600,
+                variants: [],
+            },
+        ];
+
         return {
             filters,
             products,
@@ -1139,6 +1195,7 @@ export default {
             tile,
             questions,
             materials,
+            tileServices,
         };
     },
 };
