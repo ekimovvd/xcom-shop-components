@@ -69,22 +69,26 @@ export default {
         justify-content: space-between
         align-items: center
         font-weight: 600
-        font-size: 20px
-        line-height: 32px
         color: $new-black
         padding: 0
 
-        .site-checkout-add-bonus-points__img
-            &--collapsed
-                transform: rotate(180deg)
+    .site-checkout-add-bonus-points__text
+        font-size: 20px
+        line-height: 32px
 
-@media screen and (max-width: 1024px)
+    .site-checkout-add-bonus-points__img
+        &--collapsed
+            transform: rotate(180deg)
+
+@media screen and (max-width: 1440px)
     .site-checkout-add-bonus-points
-        .site-checkout-add-bonus-points__button
+        .site-checkout-add-bonus-points__text
             font-size: 16px
+            line-height: 20px
 
 @media screen and (max-width: 768px)
     .site-checkout-add-bonus-points
-        .site-checkout-add-bonus-points__button
+        .site-checkout-add-bonus-points__text
             font-size: 14px
+            line-height: 18px
 </style>
