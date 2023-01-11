@@ -9,7 +9,13 @@
                     </div>
                     <div class="site-order-payment__input">
                         <label for="validityPeriod" class="site-order-payment__input-label">Срок действия</label>
-                        <input id="validityPeriod" type="text" class="site-order-payment__input-field" placeholder="ММ/ГГ">
+                        <input
+                            id="validityPeriod"
+                            type="text"
+                            class="site-order-payment__input-field"
+                            placeholder="ММ/ГГ"
+                            v-model="validityPeriod"
+                            >
                     </div>
                 </div>
                 <div class="site-order-payment__inputs-row site-order-payment__inputs-row--custom">
@@ -18,7 +24,13 @@
                     </div>
                     <div class="site-order-payment__input">
                         <label for="cvv" class="site-order-payment__input-label">CVV</label>
-                        <input id="cvv" type="text" class="site-order-payment__input-field" placeholder="XXX">
+                        <input
+                            id="cvv"
+                            type="text"
+                            class="site-order-payment__input-field"
+                            placeholder="XXX"
+                            v-model="securityCode"
+                        >
                     </div>
                 </div>
                 <div class="site-order-payment__inputs-row">
@@ -39,12 +51,35 @@
 </template>
 
 <script>
+import {ref, watch} from "vue";
+import {
+    formattingSecurityCodeCreditCard,
+    formattingValidityPeriodCreditCard
+} from "@/utils/functions";
+
 export default {
     name: "SiteOrderPaymentForm",
     props: {
         totalCost: {
             type: String,
-        }
+        },
+    },
+    setup() {
+        const validityPeriod = ref("");
+        const securityCode = ref("");
+
+        watch(validityPeriod, (newValidityPeriod) => {
+            validityPeriod.value = formattingValidityPeriodCreditCard(newValidityPeriod);
+        });
+
+        watch(securityCode, (newSecurityCode) => {
+            securityCode.value = formattingSecurityCodeCreditCard(newSecurityCode);
+        });
+
+        return {
+            validityPeriod,
+            securityCode,
+        };
     },
 }
 </script>
