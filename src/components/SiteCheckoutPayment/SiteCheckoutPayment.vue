@@ -7,28 +7,13 @@
                 v-if="getContentIsShow"
                 :options="getOptions"
             >
-                <SiteSlide
-                    class="site-checkout-payment__slide"
+                <SiteCheckoutPaymentMethod
                     v-for="paymentMethod in paymentMethods"
                     :key="paymentMethod.id"
-                >
-                    <a
-                        href="#"
-                        class="site-checkout-payment__slide-link"
-                        @click.prevent="onSelectPaymentMethod"
-                    >
-                        <div class="site-checkout-payment__slide-content">
-                            <img
-                                class="site-checkout-payment__slide-icon"
-                                :src="require(`@/assets/images/checkout/${paymentMethod.icon}`)"
-                                alt="payment icon"
-                            />
-                            <div class="site-checkout-payment__slide-label">
-                                {{ paymentMethod.title }}
-                            </div>
-                        </div>
-                    </a>
-                </SiteSlide>
+                    :paymentMethod="paymentMethod"
+                    @selectPaymentMethod="onSelectPaymentMethod"
+                    :isSelectedPaymentMethod="isSelectedPaymentMethod(paymentMethod)"
+                />
             </SiteSplide>
             <div class="site-checkout-payment__empty" v-else>Список пустой</div>
         </div>
@@ -37,6 +22,7 @@
 
 <script>
 import {computed, onBeforeUnmount, ref, toRefs} from "vue";
+import SiteCheckoutPaymentMethod from "@/components/SiteCheckoutPaymentMethod/SiteCheckoutPaymentMethod.vue";
 
 const SCREEN_SIZES = {
     medium: 1024,
@@ -50,19 +36,22 @@ const SLIDER_PAGES = {
 
 export default {
     name: "SiteCheckoutPayment",
+    components: {SiteCheckoutPaymentMethod},
     props: {
         paymentMethods: {
             type: Array,
             default: () => [],
         }
     },
+    emits: ["selectPaymentMethod"],
     created() {
         window.addEventListener("resize", this.onChangeResize);
         this.onChangeResize();
     },
-    setup(props) {
+    setup(props, { emit }) {
         const { paymentMethods } = toRefs(props);
         const screenWidth = ref(0);
+        const selectingPaymentMethodId = ref("");
 
         const getPerPage = computed(() => {
             if (
@@ -76,8 +65,13 @@ export default {
             return SLIDER_PAGES.max;
         });
 
-        const onSelectPaymentMethod = () => {
-            console.log("selected");
+        const onSelectPaymentMethod = (paymentMethod) => {
+            selectingPaymentMethodId.value = paymentMethod.id;
+            emit("selectPaymentMethod", paymentMethod);
+        };
+
+        const isSelectedPaymentMethod = (paymentMethod) => {
+            return selectingPaymentMethodId.value === paymentMethod.id;
         };
 
         const getOptions = computed(() => {
@@ -105,6 +99,7 @@ export default {
             getContentIsShow,
             onChangeResize,
             onSelectPaymentMethod,
+            isSelectedPaymentMethod,
         };
     }
 }
@@ -123,35 +118,6 @@ export default {
 
     .site-checkout-payment__slider
         margin-top: 24px
-
-    .site-checkout-payment__slide
-        border-radius: 24px
-        border: 2px solid $new-gray-200
-
-    .site-checkout-payment__slide-link
-        display: flex
-        align-items: center
-        justify-content: center
-        text-decoration: none
-        color: $new-black
-        padding: 16px 24px
-        height: 100%
-
-    .site-checkout-payment__slide-content
-        display: flex
-        flex-direction: column
-        align-items: center
-        grid-row-gap: 10px
-        justify-content: center
-
-    .site-checkout-payment__slide-icon
-        display: block
-
-    .site-checkout-payment__slide-label
-        font-weight: 700
-        font-size: 12px
-        color: $main-black
-        text-align: center
 
     .site-checkout-payment__empty
         text-align: center

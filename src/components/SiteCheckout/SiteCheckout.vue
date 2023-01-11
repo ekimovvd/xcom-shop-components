@@ -25,6 +25,7 @@
                 <SiteCheckoutPlate>
                     <SiteCheckoutPayment
                         :paymentMethods="paymentMethods"
+                        @selectPaymentMethod="selectPaymentMethod"
                     />
                 </SiteCheckoutPlate>
             </div>
@@ -103,12 +104,19 @@ export default {
         const selectingDeliveryMethod = reactive({
             data: null,
         });
+        const selectingPaymentMethod = reactive({
+            data: null,
+        });
         const selectingDeliveryMethodType = ref("");
         const screenWidth = ref(0);
 
         const selectDeliveryMethod = (deliveryMethod) => {
             selectingDeliveryMethodType.value = deliveryMethod.type;
             selectingDeliveryMethod.data = deliveryMethod;
+        };
+
+        const selectPaymentMethod = (paymentMethod) => {
+            selectingPaymentMethod.data = paymentMethod;
         };
 
         const isPickupDeliveryMethod = computed(() => {
@@ -129,6 +137,8 @@ export default {
 
         return {
             selectingDeliveryMethod,
+            selectingPaymentMethod,
+            selectPaymentMethod,
             isPickupDeliveryMethod,
             selectDeliveryMethod,
             onChangeResize,
