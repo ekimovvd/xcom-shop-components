@@ -41,6 +41,19 @@
         <SiteContacts />
         <SiteSupport />
         <SiteFeedbackSuccess />
+        <SiteOrderPayment
+            :paymentSystems="paymentSystems"
+            :orderPaymentInfo="orderPaymentInfo"
+        />
+    </div>
+    <div class="checkout">
+        <SiteCheckout
+            :deliveryInfo="deliveryInfo"
+            :deliveryMethods="deliveryMethods"
+            :paymentMethods="paymentMethods"
+            :orderInfo="orderInfo"
+            :recommendations="recommendedProducts"
+        />
     </div>
     <SiteExperts />
     <SiteConfigurator />
@@ -85,10 +98,13 @@ import SiteTile from "@/components/SiteTile/SiteTile.vue";
 import SiteQuestions from "@/components/SiteQuestions/SiteQuestions.vue";
 import SiteMaterials from "@/components/SiteMaterials/SiteMaterials.vue";
 import SiteTileServices from "@/components/SiteTileServices/SiteTileServices.vue";
+import SiteCheckout from "@/components/SiteCheckout/SiteCheckout.vue";
+import SiteOrderPayment from "@/components/SiteOrderPayment/SiteOrderPayment.vue";
 
 export default {
     name: "App",
     components: {
+        SiteOrderPayment,
         SiteHeader,
         SiteFilters,
         SiteProducts,
@@ -104,6 +120,7 @@ export default {
         SiteProfileCards,
         SiteFrequentQuestions,
         SiteOrders,
+        SiteCheckout,
         SiteContacts,
         SiteSupport,
         SiteExperts,
@@ -1177,6 +1194,409 @@ export default {
             },
         ];
 
+        const deliveryMethods = [
+            {
+                id: 1,
+                title: "Самовывоз в Долгопрудном",
+                address: "141701, Московская область, Долгопрудный, Транспортный проезд, 8",
+                schedule: "по рабочим дням с 09.00 до 21.00, в выходные с 10.00 до 18.00",
+                receiptDate: "Дата поступления заказа в ПВЗ: 17.08.2022",
+                type: "pickup",
+                date: "28 марта",
+                cost: "Бесплатно",
+                icon: "pickup.svg",
+            },
+            {
+                id: 2,
+                title: "Самовывоз на Ладонежской",
+                address: "141701, Московская область, Ладонежская, Транспортный проезд, 8",
+                schedule: "по рабочим дням с 09.00 до 21.00, в выходные с 10.00 до 18.00",
+                receiptDate: "Дата поступления заказа в ПВЗ: 17.08.2022",
+                type: "pickup",
+                date: "28 марта",
+                cost: "Бесплатно",
+                icon: "pickup.svg",
+            },
+            {
+                id: 3,
+                title: "Самовывоз на Водном стадионе",
+                address: "141701, Московская область, Водный стадион, Транспортный проезд, 8",
+                schedule: "по рабочим дням с 09.00 до 21.00, в выходные с 10.00 до 18.00",
+                receiptDate: "Дата поступления заказа в ПВЗ: 17.08.2022",
+                type: "pickup",
+                date: "28 марта",
+                cost: "Бесплатно",
+                icon: "pickup.svg",
+            },
+            {
+                id: 4,
+                title: "Доставка курьером",
+                type: "delivery",
+                date: "28 марта",
+                cost: "Бесплатно",
+                icon: "delivery.svg",
+            },
+            {
+                id: 5,
+                type: "pickup-boxberry",
+                title: "Самовывоз из Boxberry",
+                date: "28 марта",
+                cost: "Бесплатно",
+                icon: "boxberry.png",
+            },
+        ];
+
+        const deliveryInfo = {
+            count: 4,
+            weight: 22,
+            width: 100,
+            height: 50,
+            depth: 30,
+        };
+
+        const paymentMethods = [
+            {
+                id: 0,
+                title: "Наличными",
+                icon: "cash.svg",
+            },
+            {
+                id: 1,
+                title: "Новой картой",
+                icon: "card.svg",
+            },
+            {
+                id: 2,
+                title: "СБП",
+                icon: "spb.png",
+            },
+            {
+                id: 3,
+                title: "Тинькофф кредит",
+                icon: "tinkoff.png",
+            },
+            {
+                id: 4,
+                title: "Бонусы “Спасибо” от Сбер",
+                icon: "sber-thanks.png",
+            }
+        ];
+
+        const orderInfo = {
+            productList: [
+                {
+                    id: 0,
+                    preview: "laptop.png",
+                    name: "Ноутбук Acer EX215-32-C4FB Extensa",
+                    link: "#",
+                    model: {
+                        id: "921143",
+                        name: "90PF02S1-M006S0",
+                    },
+                    description:
+                        "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                    priceOld: 10000,
+                    priceCurrent: 9950,
+                    count: 1,
+                },
+                {
+                    id: 1,
+                    preview: "laptop.png",
+                    name: "Ноутбук Acer EX215-32-C4FB Extensa",
+                    link: "#",
+                    model: {
+                        id: "921143",
+                        name: "90PF02S1-M006S0",
+                    },
+                    description:
+                        "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                    priceOld: 10000,
+                    priceCurrent: 9950,
+                    count: 1,
+                },
+            ],
+        };
+
+        const recommendedProducts = [
+            {
+                id: 0,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: 51686,
+                priceCurrent: 43925,
+            },
+            {
+                id: 1,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: 51686,
+                priceCurrent: 43925,
+            },
+            {
+                id: 2,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: 51686,
+                priceCurrent: 43925,
+            },
+            {
+                id: 3,
+                type: "tile",
+                preview: "acer.png",
+                images: [
+                    {
+                        id: 0,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 1,
+                        img: "acer.png",
+                    },
+                    {
+                        id: 2,
+                        img: "acer.png",
+                    },
+                ],
+                name: "Acer Aspire 3",
+                link: "#",
+                rating: "4.9",
+                feedback: "18",
+                model: {
+                    id: "689788",
+                    name: "MV7N2RU/A",
+                },
+                description:
+                    "Intel Core i3 10100, DDR4, 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 630, DVD-RW, Windows 10 Pro",
+                list: [
+                    {
+                        id: 0,
+                        name: "Операционная система:",
+                        value: "Без ОС",
+                    },
+                    {
+                        id: 1,
+                        name: "Диагональ экрана:",
+                        value: "15,6”",
+                    },
+                    {
+                        id: 2,
+                        name: "Разрешение экрана:",
+                        value: "1900х1080",
+                    },
+                    {
+                        id: 3,
+                        name: "Производитель процессора:",
+                        value: "Intel",
+                    },
+                    {
+                        id: 4,
+                        name: "Модель процессора:",
+                        value: "Core i3-1005G1",
+                    },
+                    {
+                        id: 5,
+                        name: "Тактовая частота:",
+                        value: "1.2 ГГц",
+                    },
+                ],
+                priceOld: 51686,
+                priceCurrent: 43925,
+            },
+        ];
+
+        const orderPaymentInfo = {
+            id: 48758754753,
+            client: "Александров Александр, 89032218617",
+            address: "Москва, ул. Народного Ополчения, д.53, кв. 70",
+            cost: 124324,
+        };
+
+        const paymentSystems = [
+            {
+                id: 0,
+                label: "mir",
+                img: "mir.png",
+            },
+            {
+                id: 1,
+                label: "visa",
+                img: "visa.png",
+            },
+            {
+                id: 2,
+                label: "mastercard",
+                img: "mastercard.png",
+            },
+        ];
+
         return {
             filters,
             products,
@@ -1196,6 +1616,13 @@ export default {
             questions,
             materials,
             tileServices,
+            deliveryInfo,
+            deliveryMethods,
+            paymentMethods,
+            orderInfo,
+            recommendedProducts,
+            orderPaymentInfo,
+            paymentSystems,
         };
     },
 };
@@ -1232,5 +1659,7 @@ export default {
     @include container
 
 .counterparties
+    @include container
+.checkout
     @include container
 </style>
